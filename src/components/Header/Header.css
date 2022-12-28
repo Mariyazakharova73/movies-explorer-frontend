@@ -40,7 +40,7 @@
 
 @media screen and (max-width: 767px) {
   .header__link-container {
-   gap: 14px
+    gap: 14px
   }
 }
 

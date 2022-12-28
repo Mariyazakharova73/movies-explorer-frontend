@@ -1,11 +1,9 @@
 // MoviesCard — компонент одной карточки фильма.
 
-import React from 'react'
+import React from "react";
 
 const MoviesCard = () => {
-  return (
-    <div>MoviesCard</div>
-  )
-}
+  return <div>MoviesCard</div>;
+};
 
-export default MoviesCard
+export default MoviesCard;

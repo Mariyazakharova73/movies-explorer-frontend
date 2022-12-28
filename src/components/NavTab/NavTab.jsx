@@ -17,7 +17,7 @@ const NavTab = () => {
           </Link>
         </li>
       </ul>
-      <div className="navigation__account-container" >
+      <div className="navigation__account-container">
         <Link className="page__link" to="/profile">
           Аккаунт
         </Link>

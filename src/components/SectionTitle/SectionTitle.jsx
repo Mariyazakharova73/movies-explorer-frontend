@@ -1,13 +1,10 @@
-import React from 'react'
+import React from "react";
 import "./SectionTitle.css";
 
-const SectionTitle = ({children, dark}) => {
-  
-  const titleClassName = `section-title ${dark ? 'section-title_type_dark': ''}`
-  
-  return (
-    <h2 className={titleClassName}>{children}</h2>
-  )
-}
+const SectionTitle = ({ children, dark }) => {
+  const titleClassName = `section-title ${dark ? "section-title_type_dark" : ""}`;
 
-export default SectionTitle
+  return <h2 className={titleClassName}>{children}</h2>;
+};
+
+export default SectionTitle;

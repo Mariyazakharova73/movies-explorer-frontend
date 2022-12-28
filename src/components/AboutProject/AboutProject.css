@@ -130,6 +130,7 @@
   background-color: var(--decor-color);
   color: var(--text-color-dark);
 }
+
 .about-project__info_size_m {
   background-color: var(--bg-color-grey);
   color: var(--text-color);
