@@ -1,3 +1,30 @@
-.App {
+.page {
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+  max-width: 1280px;
+  width: 100%;
+  min-height: 100vh;
+  /* align-items: center; */
+  border: 1px solid green;
+  margin: 0 auto;
+}
 
+.page__content {
+  padding-left: 70px;
+  padding-right: 70px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.page__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page__link {
+  color: var(--text-color);
+  text-decoration: none;
 }

@@ -1,16 +1,18 @@
-import React from "react";
 import "./App.css";
 import Main from "../Main/Main";
 import { Route, Routes } from "react-router";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
-import Login from "components/Login/Login";
-import Register from "components/Register/Register";
+import Login from "../Login/Login";
+import Register from "../Register/Register";
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
 
-export const App = () => {
+const App = () => {
   return (
-    <div className="App">
+    <div className="page">
+      <Header />
       <Routes>
         <Route path="/" element={<Main></Main>} />
         <Route path="/movies" element={<Movies></Movies>} />
@@ -19,6 +21,9 @@ export const App = () => {
         <Route path="/signin" element={<Login></Login>} />
         <Route path="/signup" element={<Register></Register>} />
       </Routes>
+      <Footer></Footer>
     </div>
   );
 };
+
+export default App;

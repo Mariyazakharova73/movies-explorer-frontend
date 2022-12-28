@@ -1,0 +1,36 @@
+.header {
+  border: 1px solid red;
+  background-color: var(--bg-color-promo);
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 44px;
+}
+
+.header__logo {
+  width: 38px;
+  height: 38px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.header__link-container {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text-color);
+  margin-left: auto;
+}
+
+.header__button {
+  background-color: var(--decor-color);
+  color: var(--text-color-dark);
+  padding: 8px 20px;
+  border-radius: 3px;
+}

@@ -1,0 +1,33 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navigation__list {
+  display: flex;
+  gap: 16px;
+}
+
+.navigation__account-container {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.navigation__image {
+  width: 26px;
+  height: 26px;
+  border-radius: 50px;
+  background-color: var(--bg-color-image);
+  background-image: url('../../images/icon.png');
+  background-position: center;
+  background-size: 11px;
+  background-repeat: no-repeat;
+}
