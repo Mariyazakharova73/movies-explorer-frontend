@@ -18,6 +18,20 @@
   box-sizing: border-box;
 }
 
+@media screen and (max-width: 1023px) {
+  .page__content {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .page__content {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
 .page__list {
   margin: 0;
   padding: 0;

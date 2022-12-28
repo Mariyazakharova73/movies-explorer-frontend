@@ -1,11 +1,14 @@
 .header {
-  border: 1px solid red;
-  background-color: var(--bg-color-promo);
+  background-color: var(--bg-color);
   box-sizing: border-box;
   width: 100%;
   display: flex;
   align-items: center;
   gap: 44px;
+}
+
+.header_type_light {
+  background-color: var(--bg-color-promo);
 }
 
 .header__logo {
@@ -19,7 +22,7 @@
   display: flex;
   align-items: center;
   gap: 30px;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -28,9 +31,29 @@
   margin-left: auto;
 }
 
+@media screen and (max-width: 767px) {
+  .header__link-container {
+    font-size: 10px;
+    line-height: 16px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header__link-container {
+   gap: 14px
+  }
+}
+
 .header__button {
   background-color: var(--decor-color);
   color: var(--text-color-dark);
   padding: 8px 20px;
   border-radius: 3px;
+}
+
+@media screen and (max-width: 767px) {
+  .header__button {
+    padding: 5px 12px;
+    border-radius: 3px;
+  }
 }

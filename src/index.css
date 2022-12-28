@@ -4,10 +4,16 @@
 body {
   --text-color: #FFFFFF;
   --text-color-dark: #000000;
+  --text-color-grey: #8B8B8B;
+
   --bg-color: #202020;
   --bg-color-promo: #073042;
-  --bg-color-image: #313131;;
+  --bg-color-image: #313131;
+  --bg-color-grey: #303030;
+  --bg-section: #272727;
+
   --decor-color: #3DDC84;
+  --border-color: #DADADA;
   color: var(--text-color);
   background-color: var(--bg-color);
 }

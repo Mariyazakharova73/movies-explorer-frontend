@@ -12,7 +12,7 @@ import Header from "../Header/Header";
 const App = () => {
   return (
     <div className="page">
-      <Header />
+      {true ? <Header /> : null}
       <Routes>
         <Route path="/" element={<Main></Main>} />
         <Route path="/movies" element={<Movies></Movies>} />

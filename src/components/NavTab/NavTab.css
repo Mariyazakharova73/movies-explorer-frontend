@@ -26,8 +26,8 @@
   height: 26px;
   border-radius: 50px;
   background-color: var(--bg-color-image);
-  background-image: url('../../images/icon.png');
-  background-position: center;
+  background-image: url('../../images/icon.svg');
+  background-position: 48%;
   background-size: 11px;
   background-repeat: no-repeat;
 }

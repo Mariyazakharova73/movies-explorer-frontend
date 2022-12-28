@@ -1,9 +1,6 @@
-// NavTab — компонент с навигацией по странице «О проекте».
-
 import React from "react";
 import { Link } from "react-router-dom";
 import "./NavTab.css";
-import icon from "../../images/icon.png";
 
 const NavTab = () => {
   return (

@@ -1,10 +1,21 @@
-// Promo — компонент с вёрсткой баннера страницы «О проекте».
-
 import React from 'react'
+import landinglogo from "../../images/landing-logo.svg";
+import "./Promo.css";
+
+//Учебный проект студента факультета Веб-&nbsp;разработки.
 
 const Promo = () => {
   return (
-    <div>Promo</div>
+    <section className='promo page__content'>
+      <div className='promo__wrapper'>
+        <div>
+          <h1 className='promo__title'>Lorem ipsum dolor sit amet consectetur adipisicing elit. </h1>
+          <p className='promo__subtitle'>Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
+        </div>
+        <img className="promo__image" src={landinglogo} alt="Логотип-планета." />
+      </div>
+      <a className="promo__link page__link" href="#about-project">Узнать больше</a>
+      </section>
   )
 }
 

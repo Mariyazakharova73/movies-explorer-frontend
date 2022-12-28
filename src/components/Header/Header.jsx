@@ -1,12 +1,15 @@
 import React from "react";
 import "./Header.css";
 import logo from "../../images/logo.svg";
-import { Link, Routes, Route } from "react-router-dom";
+import { Link, Routes, Route, useLocation } from "react-router-dom";
 import NavTab from "../NavTab/NavTab";
 
 const Header = () => {
+const { pathname } = useLocation();
+const isMainPage = pathname === '/'
+
   return (
-    <header className="header page__content">
+    <header className={`header page__content ${isMainPage ? ' header_type_light' : ''}`}>
       <Link to="/">
         <img className="header__logo" src={logo} alt="Логотип." />
       </Link>
