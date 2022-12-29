@@ -18,9 +18,9 @@ const Promo = () => {
         </div>
         <img className="promo__image" src={landinglogo} alt="Логотип-планета." />
       </div>
-      <a className="promo__link page__link" href="#about-project">
+      <div className="promo__link page__link">
         Узнать больше
-      </a>
+      </div>
     </section>
   );
 };

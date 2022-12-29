@@ -1,11 +1,17 @@
-// SearchForm — форма поиска, куда пользователь будет вводить запрос. Обратите внимание на фильтр с чекбоксом «Только короткометражки». Для него можно воспользоваться отдельным управляемым компонентом FilterCheckbox.
-
-import React from 'react'
+import React from "react";
+import "./SearchForm.css";
 
 const SearchForm = () => {
   return (
-    <div>SearchForm</div>
-  )
-}
+    <section className="search-form page__content">
+      <form className="search-form__form">
+        <input className="search-form__input" placeholder="Фильм"/>
+        <button className="search-form__button" type="submit">
+          Найти
+        </button>
+      </form>
+    </section>
+  );
+};
 
-export default SearchForm
+export default SearchForm;

@@ -1,11 +1,16 @@
-// Обратите внимание на фильтр с чекбоксом «Только короткометражки». Для него можно воспользоваться отдельным управляемым компонентом FilterCheckbox
-
-import React from 'react'
+import React from "react";
+import "./FilterCheckbox.css";
 
 const FilterCheckbox = () => {
   return (
-    <div>FilterCheckbox</div>
-  )
-}
+    <form className="filter">
+      <label class="checkbox-ios">
+        <input type="checkbox" />
+        <span class="checkbox-ios-switch"></span>
+        Короткометражки
+      </label>
+    </form>
+  );
+};
 
-export default FilterCheckbox
+export default FilterCheckbox;

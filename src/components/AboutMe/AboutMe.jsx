@@ -6,15 +6,15 @@ import "./AboutMe.css";
 const AboutMe = () => {
   return (
     <section className="about-me page__content">
-      <SelectionTitle dark="dark">Студент</SelectionTitle>
+      <SelectionTitle>Студент</SelectionTitle>
       <div className="about-me__wrapper">
         <div>
-          <h3 className="about-me__title">Мария</h3>
+          <h3 className="about-me__title">Test</h3>
           <p className="about-me__job">Фронтенд-разработчик, 28 лет</p>
           <p className="about-me__description">
             Я живу в Ульяновске, закончила факультет "Электроснабжние" УлГТУ. В марте 2022 года
             уволилась с должности инженера-конструктора и начала проходить курс по веб-разработке. В
-            ноябре 2022 года устроилась на работу. Прохожу испытательный срок.
+            ноябре 2022 года устроилась на работу. hhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhh. gggggggggggj hhhhhhhhhh hjhhhhh hhhhhh
           </p>
           <a
             className="about-me__github-link page__link"
@@ -37,6 +37,26 @@ const AboutMe = () => {
             rel="noreferrer"
           >
             Статичный сайт
+          </a>
+        </li>
+        <li className="about-me__list-item">
+          <a
+            className="about-me__project-link page__link"
+            href="https://github.com/Mariyazakharova73/russian-travel"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Адаптивный сайт
+          </a>
+        </li>
+        <li className="about-me__list-item">
+          <a
+            className="about-me__project-link page__link"
+            href="https://github.com/Mariyazakharova73/react-mesto-auth"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Одностраничное приложение
           </a>
         </li>
       </ul>

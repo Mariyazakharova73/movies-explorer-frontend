@@ -4,7 +4,7 @@ import SelectionTitle from "../SectionTitle/SectionTitle";
 
 const AboutProject = () => {
   return (
-    <section className="about-project page__content" id="about-project">
+    <section className="about-project page__content">
       <SelectionTitle>О проекте</SelectionTitle>
       <ul className="about-project__list page__list">
         <li className="about-project__list-item">
