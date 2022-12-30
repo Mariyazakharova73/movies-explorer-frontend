@@ -3,13 +3,13 @@ import "./FilterCheckbox.css";
 
 const FilterCheckbox = () => {
   return (
-    <form className="filter">
-      <label class="checkbox-ios">
-        <input type="checkbox" />
-        <span class="checkbox-ios-switch"></span>
+      <label className="filter">
+        {/* скрываем */}
+        <input className="filter__input" type="checkbox" /> 
+        {/* стилизуем */}
+        <span className="filter__visible-checkbox"></span>
         Короткометражки
       </label>
-    </form>
   );
 };
 

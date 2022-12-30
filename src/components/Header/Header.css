@@ -67,7 +67,7 @@
   width: 44px;
   height: 44px;
   box-sizing: border-box;
-  padding: 11px;
+  padding: 11px 8px;
   border: none;
   cursor: pointer;
 }
@@ -75,5 +75,12 @@
 @media screen and (max-width: 1023px) {
   .header__button-menu {
     display: block;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header__button-menu {
+    background-size: 36px;
+    background-position: center right;
   }
 }

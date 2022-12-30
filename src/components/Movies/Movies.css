@@ -1,0 +1,36 @@
+.movies {
+  border: 1px solid red;
+  padding-top: 32px;
+  padding-bottom: 98px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .movies {
+    padding-bottom: 80px;
+  }
+}
+
+.movies__button {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  border-radius: 6px;
+  border: none;
+  padding: 0;
+  width: 320px;
+  height: 36px;
+  background-color: var(--bg-input);
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 450px) {
+  .movies__button {
+    width: 240px;
+  }
+}

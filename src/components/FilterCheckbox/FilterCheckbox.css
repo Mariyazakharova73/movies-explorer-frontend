@@ -1,91 +1,59 @@
 .filter {
-  padding-bottom: 40px;
-  margin: 0 auto;
   display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
-.checkbox-ios {
-  /* display: inline-block;     */
+  align-items: center;
+  position: relative;
+  font-size: 14px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
-  line-height: 14px;
-
-  /* height: 28px; */
-  /* line-height: 28px; */
-  /* margin-right: 10px; */
-  /* position: relative; */
-  /* vertical-align: middle; */
-  /* font-size: 14px; */
-  /* user-select: none; */
+  line-height: 18px;
 }
 
-.checkbox-ios .checkbox-ios-switch {
+@media screen and (max-width: 450px) {
+  .filter {
+    font-size: 11px;
+  }
+}
+
+.filter__visible-checkbox {
   position: relative;
-  display: inline-block;
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
   width: 34px;
   height: 14px;
-  /* width: 56px;
-  height: 28px; */
-  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   vertical-align: top;
-  background: rgb(143, 139, 139);
-  transition: 0.2s;
+  background: var(--bg-checkbox);
+  transition: .2s;
+  margin-right: 13px;
 }
-.checkbox-ios .checkbox-ios-switch:before {
+
+.filter__visible-checkbox:before {
   content: "";
   position: absolute;
   top: 2px;
   left: 2px;
-  /* display: inline-block; */
+  display: inline-block;
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: white;
-  /* box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3); */
-  transition: 0.15s;
+  background: var(--text-color);
+  transition: .15s;
 }
-.checkbox-ios input[type="checkbox"] {
+
+.filter__input {
   display: block;
-  width: 0;
-  height: 0;
+  width: 1px;
+  height: 1px;
   position: absolute;
   z-index: -1;
   opacity: 0;
 }
-.checkbox-ios
-  input[type="checkbox"]:not(:disabled):active
-  + .checkbox-ios-switch:before {
-  /* box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3); */
-}
-.checkbox-ios input[type="checkbox"]:checked + .checkbox-ios-switch {
+
+.filter__input:checked + .filter__visible-checkbox {
   background: var(--decor-color);
 }
-.checkbox-ios input[type="checkbox"]:checked + .checkbox-ios-switch:before {
+
+.filter__input:checked + .filter__visible-checkbox:before {
   transform: translateX(20px);
 }
-
-/* Hover */
-/* .checkbox-ios input[type="checkbox"]:not(:disabled) + .checkbox-ios-switch {
-	cursor: pointer;
-	border-color: rgba(0, 0, 0, .3);
-} */
-
-/* Disabled */
-/* .checkbox-ios input[type=checkbox]:disabled + .checkbox-ios-switch {
-	filter: grayscale(70%);
-	border-color: rgba(0, 0, 0, .1);
-}
-.checkbox-ios input[type=checkbox]:disabled + .checkbox-ios-switch:before {
-	background: #eee;
-}
-  */
-/* Focus */
-/* .checkbox-ios.focused .checkbox-ios-switch:before {
-	box-shadow: inset 0px 0px 4px #ff5623;
-} */
