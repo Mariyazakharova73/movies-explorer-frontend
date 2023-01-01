@@ -3,11 +3,15 @@
   padding-bottom: 28px;
 }
 
+@media screen and (max-width: 1023px) {
+  .movies-list {
+    padding-bottom: 13px;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .movies-list {
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 50px;
+    padding: 50px 10px 13px;
   }
 }
 

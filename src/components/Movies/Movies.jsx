@@ -5,15 +5,13 @@ import "./Movies.css";
 
 const Movies = () => {
   return (
-    <>
-      <SearchForm></SearchForm>
-      <MoviesCardList></MoviesCardList>
-      <div className="movies">
+    <main className="movies">
+      <SearchForm/>
+      <MoviesCardList/>
         <button className="movies__button" type="button">
           Ещё
         </button>
-      </div>
-    </>
+    </main>
   );
 };
 

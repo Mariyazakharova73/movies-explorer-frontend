@@ -1,11 +1,15 @@
-// SavedMovies — компонент страницы с сохранёнными карточками фильмов. Пригодятся эти компоненты:
-
-import React from 'react'
+import React from "react";
+import SearchForm from "../SearchForm/SearchForm";
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import "./SavedMovies.css";
 
 const SavedMovies = () => {
   return (
-    <div>SavedMovies</div>
-  )
-}
+    <main className="saved-movies">
+      <SearchForm />
+      <MoviesCardList />
+    </main>
+  );
+};
 
-export default SavedMovies
+export default SavedMovies;

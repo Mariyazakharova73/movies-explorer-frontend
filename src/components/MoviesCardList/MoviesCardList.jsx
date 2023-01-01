@@ -13,7 +13,7 @@ const MoviesCardList = () => {
       <ul className="movies-list__wrapper page__list">
         {dataArr.map((item) => {
           return (
-            <MoviesCard key={item.id} item={item} isMoviesPage={isMoviesPage}/>
+            <MoviesCard key={item.movieId} item={item} isMoviesPage={isMoviesPage}/>
           );
         })}
       </ul>

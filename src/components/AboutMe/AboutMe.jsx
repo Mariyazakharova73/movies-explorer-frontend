@@ -9,7 +9,7 @@ const AboutMe = () => {
       <SelectionTitle>Студент</SelectionTitle>
       <div className="about-me__wrapper">
         <div>
-          <h3 className="about-me__title">Test</h3>
+          <h3 className="about-me__title">Мария</h3>
           <p className="about-me__job">Фронтенд-разработчик, 28 лет</p>
           <p className="about-me__description">
             Я живу в Ульяновске, закончила факультет "Электроснабжние" УлГТУ. В марте 2022 года
