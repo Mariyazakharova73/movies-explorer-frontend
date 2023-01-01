@@ -46,7 +46,7 @@
 }
 
 .search__input:focus {
-  outline: 1px solid var(--bg-button);
+  outline: 1px solid var(--bg-btn);
 }
 
 .search__input::placeholder {
@@ -58,11 +58,10 @@
   color: var(--text-color-grey);
 }
 
-.search__button {
+.search__btn {
   height: 44px;
   border-radius: 3px;
   padding: 0;
-  box-sizing: border-box;
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
@@ -70,9 +69,5 @@
   line-height: 18px;
   border: none;
   color: var(--text-color);
-  background-color: var(--bg-button);
-}
-
-@media screen and (max-width: 767px) {
-  .search__button {}
+  background-color: var(--bg-btn);
 }

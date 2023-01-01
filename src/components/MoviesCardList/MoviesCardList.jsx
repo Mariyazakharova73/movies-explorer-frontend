@@ -1,6 +1,6 @@
 import React from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import dataArr from "../../utils/variables";
+import { dataArr } from "../../utils/variables";
 import { useLocation } from "react-router-dom";
 import "./MoviesCardList.css";
 
@@ -12,9 +12,7 @@ const MoviesCardList = () => {
     <section className="movies-list page__content">
       <ul className="movies-list__wrapper page__list">
         {dataArr.map((item) => {
-          return (
-            <MoviesCard key={item.movieId} item={item} isMoviesPage={isMoviesPage}/>
-          );
+          return <MoviesCard key={item.movieId} item={item} isMoviesPage={isMoviesPage} />;
         })}
       </ul>
     </section>

@@ -1,6 +1,6 @@
 import movie from "../images/movie.jpg"
 
-const dataArr = [
+export const dataArr = [
   {
     movieId: 0,
     nameRU: "Баския: Взрыв реальности",
@@ -75,4 +75,17 @@ const dataArr = [
   },
 ];
 
-export default dataArr;
+
+export const textRegister = {
+  title: 'Добро пожаловать!',
+  bthText: 'Зарегистрироваться',
+  text: 'Уже зарегистрированы?',
+  linkText: 'Войти'
+}
+
+export const textLogin = {
+  title: 'Рады видеть!',
+  bthText: 'Войти',
+  text: 'Ещё не зарегистрированы?',
+  linkText: 'Регистрация'
+}

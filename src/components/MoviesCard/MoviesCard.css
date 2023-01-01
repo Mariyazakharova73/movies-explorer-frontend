@@ -109,7 +109,7 @@
   background-image: url(../../images/button-saved.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-color: var(--bg-button-saved);
+  background-color: var(--bg-btn-saved);
   cursor: pointer;
 }
 

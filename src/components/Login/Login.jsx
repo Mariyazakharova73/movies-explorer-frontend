@@ -1,8 +1,10 @@
 import React from 'react'
+import FormTemplate from '../FormTemplate/FormTemplate'
+import { textLogin } from '../../utils/variables'
 
 const Login = () => {
   return (
-    <div>Login</div>
+    <FormTemplate text={textLogin} />
   )
 }
 

@@ -1,0 +1,145 @@
+.form-template {
+  margin: auto;
+  max-width: 396px;
+  width: 100%;
+}
+
+@media screen and (max-width: 450px) {
+  .form-template {
+    max-width: 260px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .form-template__logo {
+    margin: auto;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .form-template {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+.form-template__title {
+  margin: 0;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: var(--text-color);
+  margin-top: 36px;
+  margin-bottom: 40px;
+}
+
+@media screen and (max-width: 767px) {
+  .form-template__title {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 80px;
+  }
+}
+
+.form-template__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-template__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px
+}
+
+.form-template__wrapper_hidden {
+  order: 10;
+  visibility: hidden;
+}
+
+.form-template__label {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--text-color-grey)
+}
+
+.form-template__input {
+  background-color: var(--bg-input);
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--text-color);
+  padding: 15px;
+  border-radius: 8px;
+  border: none;
+}
+
+.form-template__invalid {
+  color: var(--bg-btn-saved);
+}
+
+
+.form-template__error {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  height: 10px;
+  color: var(--bg-btn-saved);
+}
+
+.form-template__btn-submit {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  padding: 0;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--bg-btn);
+  color: var(--text-color);
+  width: 100%;
+  height: 45px;
+  margin-top: 70px;
+}
+
+@media screen and (max-width: 767px) {
+  .form-template__btn-submit {
+    margin-top: 157px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+
+.form-template__text {
+  margin: 0;
+  text-align: center;
+  margin-top: 16px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--text-color-grey)
+}
+
+@media screen and (max-width: 767px) {
+  .form-template__text {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+
+.form-template__link {
+  color: var(--bg-btn)
+}

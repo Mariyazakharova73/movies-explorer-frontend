@@ -1,8 +1,10 @@
 import React from 'react'
+import FormTemplate from '../FormTemplate/FormTemplate'
+import { textRegister } from '../../utils/variables'
 
 const Register = () => {
   return (
-    <div>Register</div>
+   <FormTemplate text={textRegister} />
   )
 }
 
