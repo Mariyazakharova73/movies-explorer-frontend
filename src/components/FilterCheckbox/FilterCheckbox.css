@@ -49,10 +49,10 @@
   opacity: 0;
 }
 
-.filter__input:checked + .filter__visible-checkbox {
+.filter__input:checked+.filter__visible-checkbox {
   background: var(--decor-color);
 }
 
-.filter__input:checked + .filter__visible-checkbox:before {
+.filter__input:checked+.filter__visible-checkbox:before {
   transform: translateX(20px);
 }

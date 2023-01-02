@@ -21,7 +21,13 @@ const FormTemplate = ({ text }) => {
             }`}
           >
             <label className="form-template__label">Имя</label>
-            <input className="form-template__input" defaultValue="Мария" type="text" required />
+            <input
+              className="form-template__input"
+              defaultValue="Мария"
+              type="text"
+              required
+              placeholder="имя"
+            />
             <span className="form-template__error"></span>
           </div>
 
@@ -32,6 +38,7 @@ const FormTemplate = ({ text }) => {
               type="email"
               defaultValue="pochta@yandex.ru"
               required
+              placeholder="email"
             />
             <span className="form-template__error"></span>
           </div>
@@ -43,6 +50,7 @@ const FormTemplate = ({ text }) => {
               type="password"
               defaultValue="123456"
               required
+              placeholder="пароль"
             />
             <span className="form-template__error">Что-то пошло не так...</span>
           </div>
