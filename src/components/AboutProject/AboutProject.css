@@ -42,8 +42,6 @@
 
 .about-project__title {
   margin: 0;
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
@@ -61,8 +59,6 @@
 .about-project__text {
   margin: 0;
   margin-top: 26px;
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -107,8 +103,6 @@
 }
 
 .about-project__info {
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;

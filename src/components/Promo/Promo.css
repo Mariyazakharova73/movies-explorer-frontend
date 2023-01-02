@@ -40,7 +40,6 @@
 }
 
 .promo__title {
-  font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 50px;
@@ -68,8 +67,6 @@
 .promo__subtitle {
   margin: 0;
   margin-top: 36px;
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 400;
   font-size: 13px;
   line-height: 16px;
@@ -104,8 +101,6 @@
 
 .promo__link {
   margin-top: 84px;
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
@@ -113,6 +108,7 @@
   border-radius: 3px;
   padding: 9px 19px;
   display: inline-block;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1023px) {

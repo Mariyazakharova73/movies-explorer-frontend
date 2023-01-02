@@ -8,7 +8,7 @@ const FormTemplate = ({ text }) => {
   const isLoginPage = pathname === "/sign-in";
 
   return (
-    <div className="form-template">
+    <main className="form-template">
       <Link to="/">
         <img className="form-template__logo" src={logo} alt="Логотип." />
       </Link>
@@ -21,19 +21,29 @@ const FormTemplate = ({ text }) => {
             }`}
           >
             <label className="form-template__label">Имя</label>
-            <input className="form-template__input" defaultValue="Мария" type="text" />
+            <input className="form-template__input" defaultValue="Мария" type="text" required />
             <span className="form-template__error"></span>
           </div>
 
           <div className="form-template__wrapper">
             <label className="form-template__label">E-mail</label>
-            <input className="form-template__input" type="email" defaultValue="pochta@yandex.ru" />
+            <input
+              className="form-template__input"
+              type="email"
+              defaultValue="pochta@yandex.ru"
+              required
+            />
             <span className="form-template__error"></span>
           </div>
 
           <div className="form-template__wrapper">
             <label className="form-template__label">Пароль</label>
-            <input className="form-template__input" type="password" defaultValue="123456" />
+            <input
+              className="form-template__input"
+              type="password"
+              defaultValue="123456"
+              required
+            />
             <span className="form-template__error">Что-то пошло не так...</span>
           </div>
         </div>
@@ -44,9 +54,12 @@ const FormTemplate = ({ text }) => {
       </form>
 
       <p className="form-template__text">
-        {text.text} <span className="form-template__link">{text.linkText}</span>
+        {text.text}{" "}
+        <Link to={isLoginPage ? "/sign-up" : "/sign-in"} className="form-template__link page__link">
+          {text.linkText}
+        </Link>
       </p>
-    </div>
+    </main>
   );
 };
 

@@ -16,14 +16,18 @@
   height: 38px;
   padding-top: 20px;
   padding-bottom: 17px;
+  opacity: 1;
+  transition: opacity .5s linear;
+}
+
+.header__logo:hover {
+  opacity: 0.6;
 }
 
 .header__link-container {
   display: flex;
   align-items: center;
   gap: 30px;
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
@@ -60,7 +64,7 @@
 
 .header__button-menu {
   display: none;
-  background-image: url(../../images/button-menu.png);
+  background-image: url(../../images/button-menu.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -70,6 +74,16 @@
   padding: 11px 8px;
   border: none;
   cursor: pointer;
+  margin-left: auto;
+  z-index: 5;
+}
+
+.header__button-menu_opened {
+  background-image: url(../../images/button-close.svg);
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  margin-right: -4px;
 }
 
 @media screen and (max-width: 1023px) {
@@ -80,7 +94,7 @@
 
 @media screen and (max-width: 767px) {
   .header__button-menu {
-    background-size: 36px;
+    background-size: 30px;
     background-position: center right;
   }
 }

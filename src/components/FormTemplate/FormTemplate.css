@@ -10,6 +10,16 @@
   }
 }
 
+.form-template__logo {
+  opacity: 1;
+  transition: opacity .5s linear;
+}
+
+.form-template__logo:hover {
+  opacity: .6;
+}
+
+
 @media screen and (max-width: 767px) {
   .form-template__logo {
     margin: auto;
@@ -26,8 +36,6 @@
 
 .form-template__title {
   margin: 0;
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 500;
   font-size: 24px;
   line-height: 29px;
@@ -61,8 +69,6 @@
 }
 
 .form-template__label {
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
@@ -71,8 +77,6 @@
 
 .form-template__input {
   background-color: var(--bg-input);
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 13px;
   line-height: 16px;
@@ -88,8 +92,6 @@
 
 
 .form-template__error {
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
@@ -98,8 +100,6 @@
 }
 
 .form-template__btn-submit {
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
@@ -111,6 +111,12 @@
   width: 100%;
   height: 45px;
   margin-top: 70px;
+  opacity: 1;
+  transition: opacity .5s linear;
+}
+
+.form-template__btn-submit:hover {
+  opacity: .6;
 }
 
 @media screen and (max-width: 767px) {
@@ -125,8 +131,6 @@
   margin: 0;
   text-align: center;
   margin-top: 16px;
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;

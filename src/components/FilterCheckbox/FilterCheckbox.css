@@ -3,8 +3,6 @@
   align-items: center;
   position: relative;
   font-size: 14px;
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
@@ -26,6 +24,7 @@
   background: var(--bg-checkbox);
   transition: .2s;
   margin-right: 13px;
+  cursor: pointer;
 }
 
 .filter__visible-checkbox:before {

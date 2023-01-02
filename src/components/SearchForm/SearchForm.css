@@ -50,8 +50,6 @@
 }
 
 .search__input::placeholder {
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
@@ -62,12 +60,18 @@
   height: 44px;
   border-radius: 3px;
   padding: 0;
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 18px;
   border: none;
   color: var(--text-color);
   background-color: var(--bg-btn);
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity .5s linear;
 }
+
+.search__btn:hover {
+  opacity: 0.6;
+}
+

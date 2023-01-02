@@ -12,7 +12,7 @@ const SearchForm = () => {
             Найти
           </button>
         </div>
-        <FilterCheckbox></FilterCheckbox>
+        <FilterCheckbox/>
       </form>
     </section>
   );
