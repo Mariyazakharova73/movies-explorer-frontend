@@ -4,15 +4,16 @@ import { dataArr } from "../../utils/variables";
 import { useLocation } from "react-router-dom";
 import "./MoviesCardList.css";
 
-const MoviesCardList = () => {
+const MoviesCardList = ({movies}) => {
   const { pathname } = useLocation();
   const isMoviesPage = pathname === "/movies";
+  console.log(movies)
 
   return (
     <section className="movies-list page__content">
       <ul className="movies-list__wrapper page__list">
-        {dataArr.map((item) => {
-          return <MoviesCard key={item.movieId} item={item} isMoviesPage={isMoviesPage} />;
+        {movies.map((item) => {
+          return <MoviesCard key={item.id} item={item} isMoviesPage={isMoviesPage} />;
         })}
       </ul>
     </section>
