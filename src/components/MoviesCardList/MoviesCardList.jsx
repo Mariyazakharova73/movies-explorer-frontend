@@ -4,18 +4,21 @@ import { dataArr } from "../../utils/variables";
 import { useLocation } from "react-router-dom";
 import "./MoviesCardList.css";
 
-const MoviesCardList = ({movies}) => {
+const MoviesCardList = ({ movies }) => {
   const { pathname } = useLocation();
   const isMoviesPage = pathname === "/movies";
-  console.log(movies)
 
   return (
     <section className="movies-list page__content">
-      <ul className="movies-list__wrapper page__list">
-        {movies.map((item) => {
-          return <MoviesCard key={item.id} item={item} isMoviesPage={isMoviesPage} />;
-        })}
-      </ul>
+      {movies && movies.length !== 0 ? (
+        <ul className="movies-list__wrapper page__list">
+          {movies.map((item) => {
+            return <MoviesCard key={item.id} item={item} isMoviesPage={isMoviesPage} />;
+          })}
+        </ul>
+      ) : (
+        <p>Ничего не найдено</p>
+      )}
     </section>
   );
 };

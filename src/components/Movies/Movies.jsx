@@ -1,9 +1,10 @@
 import React from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import Preloader from "../Preloader/Preloader";
 import "./Movies.css";
 
-const Movies = ({ handleGetMovies, movies }) => {
+const Movies = ({ handleMoviesSubmit, movies, loading }) => {
   const [searchValue, setSearchValue] = React.useState(localStorage.getItem("searchValue") || "");
 
   const [isChecked, setIsChecked] = React.useState(
@@ -14,6 +15,7 @@ const Movies = ({ handleGetMovies, movies }) => {
 
   const handleChangleInput = (evt) => {
     setSearchValue(evt.target.value);
+    setEmptyInputMessage(false);
   };
 
   const handleChangleCheckbox = () => {
@@ -25,30 +27,30 @@ const Movies = ({ handleGetMovies, movies }) => {
     if (!searchValue) {
       setEmptyInputMessage(true);
     } else {
-      console.log("Поиск фильма");
-      console.log(searchValue);
-      console.log(isChecked);
+      handleMoviesSubmit(searchValue, isChecked);
     }
   };
-
-  React.useEffect(() => {
-    handleGetMovies();
-  }, []);
 
   return (
     <main className="movies">
       <SearchForm
-        handleGetMovies={handleGetMovies}
         handleChangleInput={handleChangleInput}
         handleSumbit={handleSumbit}
         isChecked={isChecked}
         handleChangleCheckbox={handleChangleCheckbox}
         emptyInputMessage={emptyInputMessage}
+        searchValue={searchValue}
       />
-      <MoviesCardList movies={movies} />
-      <button className="movies__button" type="button">
-        Ещё
-      </button>
+      {loading ? (
+        <Preloader />
+      ) : (
+        <>
+          <MoviesCardList movies={movies} />
+          <button className="movies__button" type="button">
+            Ещё
+          </button>
+        </>
+      )}
     </main>
   );
 };
