@@ -4,52 +4,53 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 import "./Movies.css";
 
-const Movies = ({ handleMoviesSubmit, movies, loading }) => {
-  const [searchValue, setSearchValue] = React.useState(localStorage.getItem("searchValue") || "");
-
-  const [isChecked, setIsChecked] = React.useState(
-    JSON.parse(localStorage.getItem("isChecked")) || false
-  );
-
+const Movies = ({
+  movies,
+  isChecked,
+  searchValue,
+  onChangleInput,
+  onChangleCheckbox,
+  handleMoviesSubmit,
+  loading,
+  addMoreMovies,
+}) => {
   const [emptyInputMessage, setEmptyInputMessage] = React.useState(false);
-
-  const handleChangleInput = (evt) => {
-    setSearchValue(evt.target.value);
-    setEmptyInputMessage(false);
-  };
-
-  const handleChangleCheckbox = () => {
-    setIsChecked((prev) => !prev);
-  };
 
   const handleSumbit = (evt) => {
     evt.preventDefault();
     if (!searchValue) {
       setEmptyInputMessage(true);
     } else {
-      handleMoviesSubmit(searchValue, isChecked);
+      handleMoviesSubmit();
     }
+  };
+
+  const handleChangle = (evt) => {
+    onChangleInput(evt)
+    setEmptyInputMessage("");
   };
 
   return (
     <main className="movies">
       <SearchForm
-        handleChangleInput={handleChangleInput}
+        handleChangleInput={handleChangle}
         handleSumbit={handleSumbit}
         isChecked={isChecked}
-        handleChangleCheckbox={handleChangleCheckbox}
-        emptyInputMessage={emptyInputMessage}
         searchValue={searchValue}
+        handleChangleCheckbox={onChangleCheckbox}
+        emptyInputMessage={emptyInputMessage}
       />
       {loading ? (
         <Preloader />
-      ) : (
+      ) : movies && movies.length !== 0 ? (
         <>
           <MoviesCardList movies={movies} />
-          <button className="movies__button" type="button">
+          <button className="movies__button" type="button" onClick={() => addMoreMovies()}>
             Ещё
           </button>
         </>
+      ) : (
+        <p>Ничего не найдено</p>
       )}
     </main>
   );

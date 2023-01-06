@@ -1,4 +1,4 @@
-import movie from "../images/movie.jpg"
+import movie from "../images/movie.jpg";
 
 export const dataArr = [
   {
@@ -75,17 +75,22 @@ export const dataArr = [
   },
 ];
 
-
 export const textRegister = {
-  title: 'Добро пожаловать!',
-  bthText: 'Зарегистрироваться',
-  text: 'Уже зарегистрированы?',
-  linkText: 'Войти'
-}
+  title: "Добро пожаловать!",
+  bthText: "Зарегистрироваться",
+  text: "Уже зарегистрированы?",
+  linkText: "Войти",
+};
 
 export const textLogin = {
-  title: 'Рады видеть!',
-  bthText: 'Войти',
-  text: 'Ещё не зарегистрированы?',
-  linkText: 'Регистрация'
-}
+  title: "Рады видеть!",
+  bthText: "Войти",
+  text: "Ещё не зарегистрированы?",
+  linkText: "Регистрация",
+};
+
+export const config = {
+  desktop: { quantity: 12, step: 3 },
+  tablet: { quantity: 8, step: 2 },
+  mobile: { quantity: 5, step: 2 },
+};
