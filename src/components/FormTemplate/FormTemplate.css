@@ -60,7 +60,6 @@
 .form-template__wrapper {
   display: flex;
   flex-direction: column;
-  gap: 10px
 }
 
 .form-template__wrapper_hidden {
@@ -72,10 +71,13 @@
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
-  color: var(--text-color-grey)
+  color: var(--text-color-grey);
+  margin-top: 20px
 }
 
 .form-template__input {
+  margin-top: 10px;
+  margin-bottom: 5px;
   background-color: var(--bg-input);
   font-weight: 400;
   font-size: 13px;
@@ -89,7 +91,6 @@
 .form-template__invalid {
   color: var(--bg-btn-saved);
 }
-
 
 .form-template__error {
   font-weight: 400;
@@ -113,10 +114,16 @@
   margin-top: 70px;
   opacity: 1;
   transition: opacity .5s linear;
+  cursor: pointer;
 }
 
 .form-template__btn-submit:hover {
   opacity: .6;
+}
+
+.form-template__btn-submit:disabled {
+  opacity: .4;
+  cursor: not-allowed;
 }
 
 @media screen and (max-width: 767px) {

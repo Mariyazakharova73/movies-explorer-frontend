@@ -7,10 +7,9 @@ export function useFormAndValidation() {
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
-
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: evt.target.validationMessage });
-    setIsValid(evt.target.closest(".form").checkValidity());
+    setIsValid(evt.target.closest(".form-template__form").checkValidity());
   };
 
   const resetForm = useCallback(

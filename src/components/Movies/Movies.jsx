@@ -13,6 +13,8 @@ const Movies = ({
   handleMoviesSubmit,
   loading,
   addMoreMovies,
+  quantity,
+  filteredMovies,
 }) => {
   const [emptyInputMessage, setEmptyInputMessage] = React.useState(false);
 
@@ -26,7 +28,7 @@ const Movies = ({
   };
 
   const handleChangle = (evt) => {
-    onChangleInput(evt)
+    onChangleInput(evt);
     setEmptyInputMessage("");
   };
 
@@ -42,15 +44,15 @@ const Movies = ({
       />
       {loading ? (
         <Preloader />
-      ) : movies && movies.length !== 0 ? (
-        <>
-          <MoviesCardList movies={movies} />
-          <button className="movies__button" type="button" onClick={() => addMoreMovies()}>
-            Ещё
-          </button>
-        </>
-      ) : (
+      ) : movies.length !== 0 ? (
+        <MoviesCardList movies={movies} />
+      ) : searchValue ? (
         <p>Ничего не найдено</p>
+      ) : null}
+      {filteredMovies && filteredMovies.length > movies.length && (
+        <button className="movies__button" type="button" onClick={() => addMoreMovies()}>
+          Ещё
+        </button>
       )}
     </main>
   );

@@ -27,10 +27,10 @@ const Header = () => {
       </Link>
       {isMainPage && (
         <div className="header__link-container">
-          <Link className="page__link" to="/sign-up">
+          <Link className="page__link" to="/signup">
             Регистрация
           </Link>
-          <Link className="header__button page__link" to="/sign-in">
+          <Link className="header__button page__link" to="/signin">
             Войти
           </Link>
         </div>

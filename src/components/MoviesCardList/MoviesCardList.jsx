@@ -8,6 +8,13 @@ const MoviesCardList = ({ movies }) => {
   const { pathname } = useLocation();
   const isMoviesPage = pathname === "/movies";
 
+
+
+// if (movies.length===0) {
+//   return <p>Ничего не найдено</p>
+// }
+
+
   return (
     <section className="movies-list page__content">
         <ul className="movies-list__wrapper page__list">

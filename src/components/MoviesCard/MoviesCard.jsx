@@ -11,7 +11,7 @@ const MoviesCard = ({ item, isMoviesPage }) => {
   const getDuration = () => {
     const minutes = item?.duration % 60;
     const hours = (item?.duration - minutes) / 60;
-    return hours ? `${hours} ч ${minutes} мин` : `${minutes} мин`;
+    return hours ? `${hours}ч ${minutes}м` : `${minutes} мин`;
   };
 
   return (
