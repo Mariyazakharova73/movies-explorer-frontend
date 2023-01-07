@@ -22,7 +22,7 @@ const Header = () => {
 
   return (
     <header className={`header page__content ${isMainPage ? " header_type_light" : ""}`}>
-      <Link to="/">
+      <Link to="/movies">
         <img className="header__logo" src={logo} alt="Логотип." />
       </Link>
       {isMainPage && (

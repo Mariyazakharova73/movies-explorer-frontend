@@ -1,17 +1,17 @@
 import React from "react";
 import "./Profile.css";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation.js";
-import { CurrentUserContext } from "../../context/CurrenUser";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { EMAIL } from "../../utils/variables";
 
-const Profile = ({ signOut, onUpdateUser }) => {
+const Profile = ({ signOut, handleEditProfile }) => {
   const { values, handleChange, errors, isValid, setValues } = useFormAndValidation({});
   const currentUser = React.useContext(CurrentUserContext);
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    const { user, email } = values;
-    onUpdateUser(user, email);
+    const { name, email } = values;
+    handleEditProfile(name, email);
   }
 
   React.useEffect(() => {
@@ -21,19 +21,36 @@ const Profile = ({ signOut, onUpdateUser }) => {
   return (
     <main>
       <section className="profile page__content">
-        <h1 className="profile__title">Привет, Мария!</h1>
+        <h1 className="profile__title">Привет, {currentUser.name}!</h1>
 
-        <form className="profile__form" onSubmit={handleSubmit} noValidate>
+        <form className="form profile__form" onSubmit={handleSubmit} noValidate>
           <div className="profile__text-wrapper">
             <label className="profile__text">Имя</label>
-            <input name="user" className="profile__input" minLength="2" required />
+            <input
+              value={values.name || ""}
+              onChange={handleChange}
+              name="name"
+              className="profile__input"
+              minLength="2"
+              required
+            />
           </div>
+          <span className="profile__error">{errors.name}</span>
           <div className="profile__border" />
           <div className="profile__text-wrapper">
             <label className="profile__text">E-mail</label>
-            <input name="email" className="profile__input" minLength="2" required pattern={EMAIL} />
+            <input
+              value={values.email || ""}
+              onChange={handleChange}
+              name="email"
+              className="profile__input"
+              minLength="2"
+              required
+              pattern={EMAIL}
+            />
           </div>
-          <button className="profile__bth-submit" type="submit">
+          <span className="profile__error">{errors.email}</span>
+          <button className="profile__bth-submit" type="submit" disabled={!isValid}>
             Редактировать
           </button>
         </form>

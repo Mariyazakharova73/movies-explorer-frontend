@@ -9,7 +9,7 @@ export function useFormAndValidation() {
     const { name, value } = evt.target;
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: evt.target.validationMessage });
-    setIsValid(evt.target.closest(".form-template__form").checkValidity());
+    setIsValid(evt.target.closest(".form").checkValidity());
   };
 
   const resetForm = useCallback(

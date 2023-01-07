@@ -8,9 +8,9 @@ const Register = ({ handleRegister }) => {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    const { user, email, password } = values;
+    const { name, email, password } = values;
 
-    handleRegister(user, email, password);
+    handleRegister(name, email, password);
   }
   return (
     <FormTemplate

@@ -10,27 +10,27 @@ const FormTemplate = ({ text, handleSubmit, handleChange, values, errors, isVali
 
   return (
     <main className="form-template">
-      <Link to="/">
+      <Link to="/movies">
         <img className="form-template__logo" src={logo} alt="Логотип." />
       </Link>
       <h1 className="form-template__title">{text.title}</h1>
-      <form className="form-template__form" onSubmit={handleSubmit} noValidate>
+      <form className="form form-template__form" onSubmit={handleSubmit} noValidate>
         <div className="form-template__container">
           {!isLoginPage ? (
             <div className="form-template__wrapper">
               <label className="form-template__label">Имя</label>
               <input
                 minLength="2"
-                name="user"
+                name="name"
                 className="form-template__input"
                 // defaultValue="Мария"
                 type="text"
                 required
                 placeholder="имя"
                 onChange={handleChange}
-                value={values.user || ""}
+                value={values.name || ""}
               />
-              <span className="form-template__error">{errors.user}</span>
+              <span className="form-template__error">{errors.name}</span>
             </div>
           ) : null}
 

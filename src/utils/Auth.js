@@ -2,7 +2,7 @@ export default class authApi {
   constructor(options) {
     this._url = options.url;
     this._headers = options.headers;
-    this._token = JSON.parse(localStorage.getItem("token"));
+    this._token = localStorage.getItem("jwt");
   }
 
   _getResponse(res) {

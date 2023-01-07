@@ -14,7 +14,7 @@ import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { apiMovies } from "../../utils/MoviesApi";
 import { config } from "../../utils/variables";
-import ProtectedRoute from '../ProtectedRoute';
+import ProtectedRoute from "../ProtectedRoute";
 import { useNavigate } from "react-router-dom";
 import { apiAuth } from "../../utils/Auth";
 
@@ -31,9 +31,7 @@ const App = () => {
   const [searchValue, setSearchValue] = React.useState("");
   const [isChecked, setIsChecked] = React.useState(false);
 
-
-  const [email, setEmail] = React.useState('');
-  const [message, setMessage] = React.useState('');
+  const [message, setMessage] = React.useState("");
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
   function closePopup() {
@@ -41,26 +39,25 @@ const App = () => {
   }
 
   function signOut() {
-    localStorage.removeItem('jwt');
+    localStorage.removeItem("jwt");
     setLoggedIn(false);
-    setEmail('');
-    navigate("/signin")
+    navigate("/signin");
   }
 
   function handleLogin(email, password) {
     return apiAuth
       .authorize(email, password)
       .then((data) => {
-        localStorage.setItem('jwt', data.token);
+        localStorage.setItem("jwt", data.token);
         setLoggedIn(true);
-        setMessage('Вы успешно авторизировались');
+        setMessage("Вы успешно авторизировались");
         setIsPopupOpen(true);
         setTimeout(closePopup, 3000);
-        navigate('/movies');
+        navigate("/movies");
       })
       .catch(() => {
         setLoggedIn(false);
-        setMessage('Что то пошло не так! Попробуйте еще раз.');
+        setMessage("Что то пошло не так! Попробуйте еще раз.");
         setIsPopupOpen(true);
         setTimeout(closePopup, 3000);
       });
@@ -71,14 +68,14 @@ const App = () => {
       .register(name, email, password)
       .then(() => {
         setLoggedIn(true);
-        setMessage('Вы успешно зарегистрировались');
+        setMessage("Вы успешно зарегистрировались");
         setIsPopupOpen(true);
         setTimeout(closePopup, 3000);
-        navigate('/signin');
+        navigate("/signin");
       })
       .catch(() => {
         setLoggedIn(false);
-        setMessage('Что то пошло не так! Попробуйте еще раз.');
+        setMessage("Что то пошло не так! Попробуйте еще раз.");
         setIsPopupOpen(true);
         setTimeout(closePopup, 3000);
       });
@@ -86,27 +83,38 @@ const App = () => {
 
   React.useEffect(() => {
     function tokenCheck() {
-      const jwt = localStorage.getItem('jwt');
+      const jwt = localStorage.getItem("jwt");
       if (!jwt) return;
       apiAuth
         .getContent(jwt)
         .then((res) => {
           if (res) {
-            setEmail(res.data.email);
+            setСurrentUser({
+              name: res.name,
+              email: res.email,
+            });
             // авторизуем пользователя
             setLoggedIn(true);
-            navigate('/movies');
+            navigate("/movies");
           }
         })
         .catch((err) => {
           console.log(err);
         });
     }
-
     tokenCheck();
   }, [loggedIn]);
 
-
+  function handleEditProfile(name, email) {
+    apiAuth
+      .editProfile(name, email)
+      .then((res) => {
+        setСurrentUser(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   const handleChangleInput = (evt) => {
     setSearchValue(evt.target.value);
@@ -178,7 +186,6 @@ const App = () => {
   };
 
   React.useEffect(() => {
-    // при перезагрузке страницы записываем данные в стейт
     const moviesFromStorage = JSON.parse(localStorage.getItem("allMovies"));
     const shortMoviesFromStorage = JSON.parse(localStorage.getItem("shortMovies"));
     const searchValueFromStorage = localStorage.getItem("searchValue");
@@ -194,7 +201,6 @@ const App = () => {
     if (isCheckedFromStorage) {
       setIsChecked(isCheckedFromStorage);
     }
-
     if (shortMoviesFromStorage) {
       setShortMovies(shortMoviesFromStorage);
     }
@@ -314,20 +320,20 @@ const App = () => {
             element={
               <ProtectedRoute loggedIn={loggedIn}>
                 <Header />
-                <Profile signOut={signOut}/>
+                <Profile signOut={signOut} handleEditProfile={handleEditProfile} />
               </ProtectedRoute>
             }
           />
-          <Route path="/signin" element={<Login handleLogin={handleLogin}/>} />
-          <Route path="/signup" element={<Register handleRegister={handleRegister}/>} />
+          <Route path="/signin" element={<Login handleLogin={handleLogin} />} />
+          <Route path="/signup" element={<Register handleRegister={handleRegister} />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <InfoTooltip
-            popupText={message}
-            isOpen={isPopupOpen}
-            onClose={closePopup}
-            loggedIn={loggedIn}
-          />
+          popupText={message}
+          isOpen={isPopupOpen}
+          onClose={closePopup}
+          loggedIn={loggedIn}
+        />
       </div>
     </CurrentUserContext.Provider>
   );
