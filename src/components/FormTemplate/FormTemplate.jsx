@@ -23,7 +23,6 @@ const FormTemplate = ({ text, handleSubmit, handleChange, values, errors, isVali
                 minLength="2"
                 name="name"
                 className="form-template__input"
-                // defaultValue="Мария"
                 type="text"
                 required
                 placeholder="имя"
@@ -42,7 +41,6 @@ const FormTemplate = ({ text, handleSubmit, handleChange, values, errors, isVali
               className="form-template__input"
               type="email"
               pattern={EMAIL}
-              // defaultValue="pochta@yandex.ru"
               required
               placeholder="email"
               onChange={handleChange}
@@ -58,7 +56,6 @@ const FormTemplate = ({ text, handleSubmit, handleChange, values, errors, isVali
               name="password"
               className="form-template__input"
               type="password"
-              // defaultValue="123456"
               required
               placeholder="пароль"
               onChange={handleChange}

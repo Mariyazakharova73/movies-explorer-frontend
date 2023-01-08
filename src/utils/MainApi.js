@@ -2,7 +2,7 @@ export default class MainApi {
   constructor(options) {
     this._url = options.url;
     this._headers = options.headers;
-    this._token = JSON.parse(localStorage.getItem("token"));
+    this._token = localStorage.getItem("jwt");
   }
 
   _getResponse(res) {
@@ -13,32 +13,46 @@ export default class MainApi {
   }
 
   getSavedMovies() {
-    return fetch(`${this._url}/movies`, {
-      headers: this._headers,
-    }).then(this._getResponse);
+    this._token = localStorage.getItem("jwt");
+    if (this._token) {
+      return fetch(`${this._url}/movies`, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${this._token}`,
+        },
+      }).then(this._getResponse);
+    }
   }
 
-  saveMovie(dataMovie) {
-    return fetch(`${this._url}/movies`, {
-      method: "POST",
-      headers: this._headers,
-      body: JSON.stringify(dataMovie),
-    }).then(this._getResponse);
+  saveMovie(movie) {
+    if (this._token) {
+      return fetch(`${this._url}/movies`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${this._token}`,
+        },
+        body: JSON.stringify(movie),
+      }).then(this._getResponse);
+    }
   }
 
   deleteMovie(id) {
-    return fetch(`${this._url}/movies/${id}`, {
-      method: "DELETE",
-      headers: this._headers,
-    }).then(this._getResponse);
+    if (this._token) {
+      return fetch(`${this._url}/movies/${id}`, {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${this._token}`,
+        },
+      }).then(this._getResponse);
+    }
   }
 }
 
 export const apiMain = new MainApi({
   url: "https://api.movies.zakharova.nomoredomains.club",
-  headers: {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${this._token}`,
-  },
 });

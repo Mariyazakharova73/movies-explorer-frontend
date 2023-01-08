@@ -17,22 +17,61 @@ import { config } from "../../utils/variables";
 import ProtectedRoute from "../ProtectedRoute";
 import { useNavigate } from "react-router-dom";
 import { apiAuth } from "../../utils/Auth";
+import { apiMain } from "../../utils/MainApi";
 
 const App = () => {
   const navigate = useNavigate();
-  const [loggedIn, setLoggedIn] = React.useState(true);
+  const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setСurrentUser] = React.useState({});
   const [loading, setLoading] = React.useState(false);
   const [allMovies, setAllMovies] = React.useState([]);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [quantity, setQuantity] = React.useState(config.desktop);
   const [shortMovies, setShortMovies] = React.useState([]);
-
   const [searchValue, setSearchValue] = React.useState("");
   const [isChecked, setIsChecked] = React.useState(false);
-
   const [message, setMessage] = React.useState("");
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+  const [savedMovies, setSavedMovies] = React.useState([]);
+
+  const handleGetSavedMovies = async () => {
+    try {
+      const res = await apiMain.getSavedMovies();
+      setSavedMovies(res);
+      localStorage.setItem("savedMovies", JSON.stringify(res));
+      return res;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  React.useEffect(() => {
+    if (loggedIn) {
+      handleGetSavedMovies();
+    }
+  }, [loggedIn]);
+
+  function handleSaveMovie(movie) {
+    apiMain
+      .saveMovie(movie)
+      .then((res) => {
+        setSavedMovies([...savedMovies, res]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function handleDeleteMovie(id) {
+    apiMain
+      .deleteMovie(id)
+      .then((res) => {
+        setSavedMovies((state) => state.filter((item) => item._id !== id));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   function closePopup() {
     setIsPopupOpen(false);
@@ -40,8 +79,19 @@ const App = () => {
 
   function signOut() {
     localStorage.removeItem("jwt");
+    localStorage.removeItem("savedMovies");
+    localStorage.removeItem("searchValue");
+    localStorage.removeItem("isChecked");
+    localStorage.removeItem("allMovies");
+    localStorage.removeItem("filteredMovies");
+    localStorage.removeItem("shortMovies");
+    setFilteredMovies([]);
+    setIsChecked(false);
+    setSavedMovies([]);
+    setShortMovies([]);
+    setSearchValue("");
     setLoggedIn(false);
-    navigate("/signin");
+    navigate("/");
   }
 
   function handleLogin(email, password) {
@@ -132,6 +182,9 @@ const App = () => {
       setAllMovies(res);
       return res;
     } catch (err) {
+      setMessage("Во время запроса произошла ошибка. Подождите немного и попробуйте ещё раз");
+      setIsPopupOpen(true);
+      setTimeout(closePopup, 3000);
       console.log(err);
     } finally {
       setLoading(false);
@@ -157,8 +210,17 @@ const App = () => {
     }
   };
 
+  const getFilteredMovies = (movie) => {
+    // фильтруем по инпуту
+    const filteredByInputMovies = filterByInput(movie);
+    // фильтруем по продолжительности
+    const filteredByDurationMovies = filterByDuration(filteredByInputMovies);
+    localStorage.setItem("filteredMovies", JSON.stringify(filteredByDurationMovies));
+    setFilteredMovies(filteredByDurationMovies);
+    cutArr(filteredByDurationMovies);
+  };
+
   const handleMoviesSubmit = async () => {
-    // localStorage.setItem("isChecked", isChecked);
     localStorage.setItem("searchValue", searchValue);
     localStorage.setItem("isChecked", isChecked);
     const moviesFromStorage = JSON.parse(localStorage.getItem("allMovies"));
@@ -166,23 +228,19 @@ const App = () => {
     if (!moviesFromStorage) {
       const res = await handleGetAllMovies();
       localStorage.setItem("allMovies", JSON.stringify(res));
-      // фильтруем по инпуту
-      const x = filterByInput(res);
-      // фильтруем по продолжительности
-      const x2 = filterByDuration(x);
-      localStorage.setItem("filteredMovies", JSON.stringify(x2));
-      setFilteredMovies(x2);
-      cutArr(x2);
+      getFilteredMovies(res);
     } else {
-      // фильтруем по инпуту
-      const x = filterByInput(moviesFromStorage, searchValue);
-      //фильтруем по продолжительности
-      const x2 = filterByDuration(x);
-      localStorage.setItem("filteredMovies", JSON.stringify(x2));
-      setFilteredMovies(x2);
-      localStorage.setItem("filteredMovies", JSON.stringify(x2));
-      cutArr(x2);
+      getFilteredMovies(moviesFromStorage);
     }
+  };
+
+  const handleSavedMoviesSubmit = () => {
+    localStorage.setItem("searchValue", searchValue);
+    localStorage.setItem("isChecked", isChecked);
+    const x = filterByInput(savedMovies);
+    // фильтруем по продолжительности
+    const x2 = filterByDuration(x);
+    setSavedMovies(x2);
   };
 
   React.useEffect(() => {
@@ -206,7 +264,6 @@ const App = () => {
     }
   }, []);
 
-  //измеряем ширину экрна и записываем количество карточек и стейт
   const handleChangeResize = () => {
     if (window.innerWidth >= 1280) {
       setQuantity(config.desktop);
@@ -230,8 +287,6 @@ const App = () => {
       const newArr = arr.slice(0, quantity.quantity);
       setShortMovies(newArr);
       localStorage.setItem("shortMovies", JSON.stringify(newArr));
-      console.log("длина обрезаемого массива", arr.length);
-      console.log(quantity);
     }
   };
 
@@ -243,23 +298,25 @@ const App = () => {
   }, [quantity]);
 
   React.useEffect(() => {
-    localStorage.setItem("isChecked", isChecked);
+    if (loggedIn) {
+      localStorage.setItem("isChecked", isChecked);
+    }
     const moviesFromStorage = JSON.parse(localStorage.getItem("allMovies"));
     if (moviesFromStorage) {
-      // фильтруем по инпуту
-      const x = filterByInput(moviesFromStorage, searchValue);
-      //фильтруем по продолжительности
-      const x2 = filterByDuration(x);
-      localStorage.setItem("filteredMovies", JSON.stringify(x2));
-      setFilteredMovies(x2);
-      localStorage.setItem("filteredMovies", JSON.stringify(x2));
-      cutArr(x2);
+      getFilteredMovies(moviesFromStorage);
+    }
+
+    const savedMoviesFromStorage = JSON.parse(localStorage.getItem("savedMovies"));
+
+    if (savedMoviesFromStorage) {
+      const filteredByInputMovies = filterByInput(savedMoviesFromStorage);
+      const filteredByDurationMovies = filterByDuration(filteredByInputMovies);
+      setSavedMovies(filteredByDurationMovies);
     }
   }, [isChecked]);
 
   const addMoreMovies = () => {
     const filteredMoviesFromStorage = JSON.parse(localStorage.getItem("filteredMovies"));
-    console.log("addMoreMovies", shortMovies.length);
     // длина отфильтрованного массива
     const endMoviesList = shortMovies.length;
     const newLength = shortMovies.length + quantity.step;
@@ -267,7 +324,6 @@ const App = () => {
     const newArr = filteredMoviesFromStorage.slice(endMoviesList, newLength);
     // перезаписываем стейт
     setShortMovies([...shortMovies, ...newArr]);
-    // localStorage.setItem("shortMovies", JSON.stringify([...shortMovies, ...newArr]));
   };
 
   return (
@@ -298,8 +354,10 @@ const App = () => {
                   handleMoviesSubmit={handleMoviesSubmit}
                   loading={loading}
                   addMoreMovies={addMoreMovies}
-                  quantity={quantity}
                   filteredMovies={filteredMovies}
+                  handleSaveMovie={handleSaveMovie}
+                  savedMovies={savedMovies}
+                  handleDeleteMovie={handleDeleteMovie}
                 />
                 <Footer />
               </ProtectedRoute>
@@ -310,7 +368,16 @@ const App = () => {
             element={
               <ProtectedRoute loggedIn={loggedIn}>
                 <Header />
-                <SavedMovies />
+                <SavedMovies
+                  savedMovies={savedMovies}
+                  handleDeleteMovie={handleDeleteMovie}
+                  isChecked={isChecked}
+                  searchValue={searchValue}
+                  onChangleInput={handleChangleInput}
+                  onChangleCheckbox={handleChangleCheckbox}
+                  handleSavedMoviesSubmit={handleSavedMoviesSubmit}
+                  loading={loading}
+                />
                 <Footer />
               </ProtectedRoute>
             }

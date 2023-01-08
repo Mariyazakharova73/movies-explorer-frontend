@@ -6,6 +6,7 @@ import "./Movies.css";
 
 const Movies = ({
   movies,
+  savedMovies,
   isChecked,
   searchValue,
   onChangleInput,
@@ -13,8 +14,9 @@ const Movies = ({
   handleMoviesSubmit,
   loading,
   addMoreMovies,
-  quantity,
   filteredMovies,
+  handleSaveMovie,
+  handleDeleteMovie,
 }) => {
   const [emptyInputMessage, setEmptyInputMessage] = React.useState(false);
 
@@ -45,7 +47,12 @@ const Movies = ({
       {loading ? (
         <Preloader />
       ) : movies.length !== 0 ? (
-        <MoviesCardList movies={movies} />
+        <MoviesCardList
+          movies={movies}
+          savedMovies={savedMovies}
+          handleSaveMovie={handleSaveMovie}
+          handleDeleteMovie={handleDeleteMovie}
+        />
       ) : searchValue ? (
         <p>Ничего не найдено</p>
       ) : null}

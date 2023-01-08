@@ -18,4 +18,4 @@ export const config = {
   mobile: { quantity: 5, step: 2 },
 };
 
-export const EMAIL = '[A-z0-9_.-]{1,}@[A-z0-9_.-]{1,}[.][A-z]{2,6}'
+export const EMAIL = "[A-z0-9_.-]{1,}@[A-z0-9_.-]{1,}[.][A-z]{2,6}";
