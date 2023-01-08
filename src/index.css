@@ -1,0 +1,37 @@
+@import url(./vendor/fonts/fonts.css);
+@import url(./vendor/normalize.css);
+
+body {
+  --text-color: #ffffff;
+  --text-color-dark: #000000;
+  --text-color-grey: #8b8b8b;
+
+  --bg-color: #202020;
+  --bg-color-promo: #073042;
+  --bg-color-image: #313131;
+  --bg-color-grey: #303030;
+  --bg-section: #272727;
+  --bg-btn: #4285f4;
+  --bg-input: #2f2f2f;
+  --bg-checkbox: #ebebeb;
+  --bg-btn-saved: #ee3465;
+
+  --decor-color: #3ddc84;
+  --border-color: #dadada;
+  --border-link: #424242;
+  --border-link-light: #e6e6e6;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+:root {
+  /* Сглаживание */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Подгонка размера текста */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  /* Рендеринг */
+  text-rendering: optimizeLegibility;
+}

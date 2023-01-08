@@ -1,0 +1,137 @@
+.profile {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 72px;
+}
+
+@media screen and (max-width: 1023px) {
+  .profile {
+    padding-top: 234px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile {
+    padding-top: 68px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+.profile__title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.profile__form {
+  margin-top: 123px;
+  display: flex;
+  flex-direction: column;
+  max-width: 410px;
+  width: 100%;
+  gap: 16px;
+}
+
+@media screen and (max-width: 1023px) {
+  .profile__form {
+    margin-top: 96px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile__form {
+    margin-top: 80px;
+  }
+}
+
+.profile__text-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile__border {
+  border: 1px solid var(--border-link)
+}
+
+.profile__text {
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+}
+
+.profile__input {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  border: none;
+  color: var(--text-color);
+  background: transparent;
+  text-align: right;
+  outline: none;
+}
+
+.profile__bth-submit {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--text-color);
+  background: transparent;
+  border: none;
+  margin-top: 202px;
+  padding: 0;
+  max-width: 410px;
+  width: 100%;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity .5s linear;
+}
+
+.profile__bth-submit:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 1023px) {
+  .profile__bth-submit {
+    margin-top: 191px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile__bth-submit {
+    margin-top: 360px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+
+.profile__bth-exit {
+  margin-top: 16px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--bg-btn-saved);
+  background: transparent;
+  padding: 0;
+  border: none;
+  max-width: 410px;
+  width: 100%;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity .5s linear;
+}
+
+.profile__bth-exit:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__bth-exit {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

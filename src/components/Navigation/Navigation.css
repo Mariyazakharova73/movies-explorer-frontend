@@ -1,0 +1,131 @@
+.navigation {
+  width: 100%;
+}
+
+@media screen and (max-width: 1023px) {
+  .navigation {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+  }
+}
+
+.navigation_active {
+  visibility: visible;
+}
+
+.navigation__content {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media screen and (max-width: 1023px) {
+  .navigation__content {
+    flex-direction: column;
+    position: absolute;
+    width: 525px;
+    height: 100vh;
+    background-color: var(--bg-color);
+    top: 0;
+    right: 0;
+    z-index: 2;
+    gap: 617px;
+    justify-content: start;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .navigation__content {
+    width: 100%;
+    gap: 440px;
+  }
+}
+
+
+.navigation__list {
+  display: flex;
+  gap: 16px;
+}
+
+@media screen and (max-width: 1023px) {
+  .navigation__list {
+    margin-top: 162px;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 340px;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .navigation__list {
+    margin-top: 155px;
+    gap: 24px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .navigation__list-item {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: var(--text-color);
+    z-index: 3;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .navigation__list-item_active {
+    border-bottom: 2px solid var(--text-color);
+    padding-bottom: 3px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .navigation__list-item_active {
+    padding-bottom: 4px;
+  }
+}
+
+.navigation__account-container {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  z-index: 3;
+  margin-right: 3px;
+  text-align: center;
+}
+
+@media screen and (max-width: 1023px) {
+  .navigation__account-container {
+    margin-left: 15px;
+  }
+}
+
+.navigation__account-image {
+  width: 26px;
+  height: 26px;
+  border-radius: 50px;
+  background-color: var(--bg-color-image);
+  background-image: url("../../images/icon.svg");
+  background-position: 48%;
+  background-size: 11px;
+  background-repeat: no-repeat;
+}
+
+.navigation__link {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 12px;
+  color: var(--text-color)
+}
