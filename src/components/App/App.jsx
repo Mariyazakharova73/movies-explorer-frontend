@@ -46,12 +46,6 @@ const App = () => {
     }
   };
 
-  // React.useEffect(() => {
-  //   if (loggedIn) {
-  //     handleGetSavedMovies();
-  //   }
-  // }, [loggedIn]);
-
   function handleSaveMovie(movie) {
     apiMain
       .saveMovie(movie)
@@ -119,7 +113,7 @@ const App = () => {
       .register(name, email, password)
       .then(() => {
         setMessage("Вы успешно зарегистрировались");
-        setRegistration(true)
+        setRegistration(true);
         setIsPopupOpen(true);
         setTimeout(closePopup, 3000);
         navigate("/signin");
@@ -154,6 +148,9 @@ const App = () => {
         });
     }
     tokenCheck();
+  }, [loggedIn]);
+
+  React.useEffect(() => {
     if (loggedIn) {
       handleGetSavedMovies();
     }
