@@ -46,11 +46,11 @@ const App = () => {
     }
   };
 
-  React.useEffect(() => {
-    if (loggedIn) {
-      handleGetSavedMovies();
-    }
-  }, [loggedIn]);
+  // React.useEffect(() => {
+  //   if (loggedIn) {
+  //     handleGetSavedMovies();
+  //   }
+  // }, [loggedIn]);
 
   function handleSaveMovie(movie) {
     apiMain
