@@ -7,6 +7,7 @@ import { EMAIL } from "../../utils/variables";
 const FormTemplate = ({ text, handleSubmit, handleChange, values, errors, isValid }) => {
   const { pathname } = useLocation();
   const isLoginPage = pathname === "/signin";
+  console.log(isValid)
 
   return (
     <main className="form-template">

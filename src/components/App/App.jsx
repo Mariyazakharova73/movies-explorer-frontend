@@ -22,6 +22,7 @@ import { apiMain } from "../../utils/MainApi";
 const App = () => {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [registration, setRegistration] = React.useState(false);
   const [currentUser, setСurrentUser] = React.useState({});
   const [loading, setLoading] = React.useState(false);
   const [allMovies, setAllMovies] = React.useState([]);
@@ -117,14 +118,14 @@ const App = () => {
     return apiAuth
       .register(name, email, password)
       .then(() => {
-        setLoggedIn(true);
         setMessage("Вы успешно зарегистрировались");
+        setRegistration(true)
         setIsPopupOpen(true);
         setTimeout(closePopup, 3000);
         navigate("/signin");
       })
       .catch(() => {
-        setLoggedIn(false);
+        setRegistration(false);
         setMessage("Что то пошло не так! Попробуйте еще раз.");
         setIsPopupOpen(true);
         setTimeout(closePopup, 3000);
@@ -153,6 +154,9 @@ const App = () => {
         });
     }
     tokenCheck();
+    if (loggedIn) {
+      handleGetSavedMovies();
+    }
   }, [loggedIn]);
 
   function handleEditProfile(name, email) {
@@ -182,7 +186,9 @@ const App = () => {
       setAllMovies(res);
       return res;
     } catch (err) {
-      setMessage("Во время запроса произошла ошибка. Подождите немного и попробуйте ещё раз");
+      setMessage(
+        "Во время запроса произошла ошибка. Подождите немного и попробуйте ещё раз"
+      );
       setIsPopupOpen(true);
       setTimeout(closePopup, 3000);
       console.log(err);
@@ -196,7 +202,9 @@ const App = () => {
       const newNameRU = item.nameRU.toLowerCase();
       const newNameEN = item.nameEN.toLowerCase();
       const newSearchValue = searchValue.toLowerCase();
-      return newNameRU.includes(newSearchValue) || newNameEN.includes(newSearchValue);
+      return (
+        newNameRU.includes(newSearchValue) || newNameEN.includes(newSearchValue)
+      );
     });
   };
 
@@ -215,7 +223,10 @@ const App = () => {
     const filteredByInputMovies = filterByInput(movie);
     // фильтруем по продолжительности
     const filteredByDurationMovies = filterByDuration(filteredByInputMovies);
-    localStorage.setItem("filteredMovies", JSON.stringify(filteredByDurationMovies));
+    localStorage.setItem(
+      "filteredMovies",
+      JSON.stringify(filteredByDurationMovies)
+    );
     setFilteredMovies(filteredByDurationMovies);
     cutArr(filteredByDurationMovies);
   };
@@ -245,7 +256,9 @@ const App = () => {
 
   React.useEffect(() => {
     const moviesFromStorage = JSON.parse(localStorage.getItem("allMovies"));
-    const shortMoviesFromStorage = JSON.parse(localStorage.getItem("shortMovies"));
+    const shortMoviesFromStorage = JSON.parse(
+      localStorage.getItem("shortMovies")
+    );
     const searchValueFromStorage = localStorage.getItem("searchValue");
     const isCheckedFromStorage = JSON.parse(localStorage.getItem("isChecked"));
     if (moviesFromStorage) {
@@ -291,7 +304,9 @@ const App = () => {
   };
 
   React.useEffect(() => {
-    const filteredMoviesFromStorage = JSON.parse(localStorage.getItem("filteredMovies"));
+    const filteredMoviesFromStorage = JSON.parse(
+      localStorage.getItem("filteredMovies")
+    );
     if (filteredMoviesFromStorage) {
       cutArr(filteredMoviesFromStorage);
     }
@@ -306,7 +321,9 @@ const App = () => {
       getFilteredMovies(moviesFromStorage);
     }
 
-    const savedMoviesFromStorage = JSON.parse(localStorage.getItem("savedMovies"));
+    const savedMoviesFromStorage = JSON.parse(
+      localStorage.getItem("savedMovies")
+    );
 
     if (savedMoviesFromStorage) {
       const filteredByInputMovies = filterByInput(savedMoviesFromStorage);
@@ -316,7 +333,9 @@ const App = () => {
   }, [isChecked]);
 
   const addMoreMovies = () => {
-    const filteredMoviesFromStorage = JSON.parse(localStorage.getItem("filteredMovies"));
+    const filteredMoviesFromStorage = JSON.parse(
+      localStorage.getItem("filteredMovies")
+    );
     // длина отфильтрованного массива
     const endMoviesList = shortMovies.length;
     const newLength = shortMovies.length + quantity.step;
@@ -387,12 +406,18 @@ const App = () => {
             element={
               <ProtectedRoute loggedIn={loggedIn}>
                 <Header />
-                <Profile signOut={signOut} handleEditProfile={handleEditProfile} />
+                <Profile
+                  signOut={signOut}
+                  handleEditProfile={handleEditProfile}
+                />
               </ProtectedRoute>
             }
           />
           <Route path="/signin" element={<Login handleLogin={handleLogin} />} />
-          <Route path="/signup" element={<Register handleRegister={handleRegister} />} />
+          <Route
+            path="/signup"
+            element={<Register handleRegister={handleRegister} />}
+          />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <InfoTooltip
@@ -400,6 +425,7 @@ const App = () => {
           isOpen={isPopupOpen}
           onClose={closePopup}
           loggedIn={loggedIn}
+          registration={registration}
         />
       </div>
     </CurrentUserContext.Provider>
