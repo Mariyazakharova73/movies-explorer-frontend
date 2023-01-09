@@ -3,7 +3,7 @@ import success from "../../images/success.png";
 import fail from "../../images/fail.png";
 import "./InfoTooltip.css";
 
-function InfoTooltip({ popupText, isOpen, onClose, loggedIn, registration }) {
+function InfoTooltip({ popupText, isOpen, onClose, loggedIn }) {
   return (
     <div className={`popup ${isOpen ? "popup_opened" : ""}`}>
       <div className="popup__content">
@@ -12,7 +12,7 @@ function InfoTooltip({ popupText, isOpen, onClose, loggedIn, registration }) {
           <div className="popup__content-wrapper">
             <img
               className="popup__registration-image"
-              src={loggedIn || registration ? success : fail}
+              src={loggedIn ? success : fail}
               alt="Информационный попап"
             />
             <h2 className="popup__form-heading">{popupText}</h2>

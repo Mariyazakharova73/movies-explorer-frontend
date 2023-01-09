@@ -2,6 +2,7 @@ import React from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import "./SavedMovies.css";
+import Preloader from "../Preloader/Preloader";
 
 const SavedMovies = ({
   savedMovies,
@@ -11,9 +12,14 @@ const SavedMovies = ({
   onChangleInput,
   onChangleCheckbox,
   handleSavedMoviesSubmit,
-  filteredSavedMovies
+  handleGetSavedMovies,
+  loading,
 }) => {
   const [emptyInputMessage, setEmptyInputMessage] = React.useState(false);
+
+  React.useEffect(() => {
+    handleGetSavedMovies();
+  }, []);
 
   const handleSumbit = (evt) => {
     evt.preventDefault();
@@ -38,8 +44,13 @@ const SavedMovies = ({
         handleChangleCheckbox={onChangleCheckbox}
         emptyInputMessage={emptyInputMessage}
       />
-      {savedMovies.length !== 0 ? (
-        <MoviesCardList savedMovies={savedMovies} handleDeleteMovie={handleDeleteMovie} />
+      {loading ? (
+        <Preloader />
+      ) : savedMovies.length !== 0 ? (
+        <MoviesCardList
+          savedMovies={savedMovies}
+          handleDeleteMovie={handleDeleteMovie}
+        />
       ) : (
         <p>Ничего не найдено</p>
       )}

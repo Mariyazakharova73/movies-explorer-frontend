@@ -22,7 +22,6 @@ import { apiMain } from "../../utils/MainApi";
 const App = () => {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [registration, setRegistration] = React.useState(false);
   const [currentUser, setСurrentUser] = React.useState({});
   const [loading, setLoading] = React.useState(false);
   const [allMovies, setAllMovies] = React.useState([]);
@@ -36,6 +35,7 @@ const App = () => {
   const [savedMovies, setSavedMovies] = React.useState([]);
 
   const handleGetSavedMovies = async () => {
+    setLoading(true);
     try {
       const res = await apiMain.getSavedMovies();
       setSavedMovies(res);
@@ -43,6 +43,8 @@ const App = () => {
       return res;
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -113,13 +115,13 @@ const App = () => {
       .register(name, email, password)
       .then(() => {
         setMessage("Вы успешно зарегистрировались");
-        setRegistration(true);
+        setLoggedIn(true);
         setIsPopupOpen(true);
         setTimeout(closePopup, 3000);
         navigate("/signin");
       })
       .catch(() => {
-        setRegistration(false);
+        setLoggedIn(false);
         setMessage("Что то пошло не так! Попробуйте еще раз.");
         setIsPopupOpen(true);
         setTimeout(closePopup, 3000);
@@ -148,12 +150,6 @@ const App = () => {
         });
     }
     tokenCheck();
-  }, [loggedIn]);
-
-  React.useEffect(() => {
-    if (loggedIn) {
-      handleGetSavedMovies();
-    }
   }, [loggedIn]);
 
   function handleEditProfile(name, email) {
@@ -245,10 +241,10 @@ const App = () => {
   const handleSavedMoviesSubmit = () => {
     localStorage.setItem("searchValue", searchValue);
     localStorage.setItem("isChecked", isChecked);
-    const x = filterByInput(savedMovies);
+    const filteredByInputMovies = filterByInput(savedMovies);
     // фильтруем по продолжительности
-    const x2 = filterByDuration(x);
-    setSavedMovies(x2);
+    const filteredByDurationMovies = filterByDuration(filteredByInputMovies);
+    setSavedMovies(filteredByDurationMovies);
   };
 
   React.useEffect(() => {
@@ -393,6 +389,7 @@ const App = () => {
                   onChangleCheckbox={handleChangleCheckbox}
                   handleSavedMoviesSubmit={handleSavedMoviesSubmit}
                   loading={loading}
+                  handleGetSavedMovies={handleGetSavedMovies}
                 />
                 <Footer />
               </ProtectedRoute>
@@ -422,7 +419,6 @@ const App = () => {
           isOpen={isPopupOpen}
           onClose={closePopup}
           loggedIn={loggedIn}
-          registration={registration}
         />
       </div>
     </CurrentUserContext.Provider>
