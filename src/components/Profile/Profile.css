@@ -97,6 +97,7 @@
 
 .profile__bth-submit:disabled {
   opacity: .6;
+  cursor: not-allowed;
 }
 
 
