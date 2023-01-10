@@ -5,7 +5,8 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { EMAIL } from "../../utils/variables";
 
 const Profile = ({ signOut, handleEditProfile }) => {
-  const { values, handleChange, errors, isValid, setValues } = useFormAndValidation({});
+  const { values, handleChange, errors, isValid, setValues } =
+    useFormAndValidation({});
   const currentUser = React.useContext(CurrentUserContext);
 
   function handleSubmit(evt) {
@@ -50,7 +51,11 @@ const Profile = ({ signOut, handleEditProfile }) => {
             />
           </div>
           <span className="profile__error">{errors.email}</span>
-          <button className="profile__bth-submit" type="submit" disabled={!isValid}>
+          <button
+            className="profile__bth-submit"
+            type="submit"
+            disabled={!isValid}
+          >
             Редактировать
           </button>
         </form>

@@ -33,6 +33,8 @@ const App = () => {
   const [message, setMessage] = React.useState("");
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [savedMovies, setSavedMovies] = React.useState([]);
+  const [changeToken, setChangeToken] = React.useState(false);
+  const [errorImage, setErrorImage] = React.useState(false);
 
   const handleGetSavedMovies = async () => {
     setLoading(true);
@@ -91,24 +93,26 @@ const App = () => {
     navigate("/");
   }
 
-  function handleLogin(email, password) {
+  const handleLogin = async (email, password) => {
     return apiAuth
       .authorize(email, password)
       .then((data) => {
         localStorage.setItem("jwt", data.token);
         setLoggedIn(true);
+        setChangeToken(true);
         setMessage("Вы успешно авторизировались");
         setIsPopupOpen(true);
-        setTimeout(closePopup, 3000);
+        setTimeout(closePopup, 2000);
         navigate("/movies");
       })
       .catch(() => {
         setLoggedIn(false);
         setMessage("Что то пошло не так! Попробуйте еще раз.");
         setIsPopupOpen(true);
-        setTimeout(closePopup, 3000);
+        setTimeout(closePopup, 2000);
+        setErrorImage(true);
       });
-  }
+  };
 
   function handleRegister(name, email, password) {
     return apiAuth
@@ -117,14 +121,15 @@ const App = () => {
         setMessage("Вы успешно зарегистрировались");
         setLoggedIn(true);
         setIsPopupOpen(true);
-        setTimeout(closePopup, 3000);
+        setTimeout(closePopup, 2000);
         navigate("/signin");
       })
       .catch(() => {
         setLoggedIn(false);
         setMessage("Что то пошло не так! Попробуйте еще раз.");
         setIsPopupOpen(true);
-        setTimeout(closePopup, 3000);
+        setTimeout(closePopup, 2000);
+        setErrorImage(true);
       });
   }
 
@@ -136,12 +141,12 @@ const App = () => {
         .getContent(jwt)
         .then((res) => {
           if (res) {
+            // авторизуем пользователя
+            setLoggedIn(true);
             setСurrentUser({
               name: res.name,
               email: res.email,
             });
-            // авторизуем пользователя
-            setLoggedIn(true);
             navigate("/movies");
           }
         })
@@ -150,16 +155,23 @@ const App = () => {
         });
     }
     tokenCheck();
-  }, [loggedIn]);
+  }, [loggedIn, changeToken]);
 
   function handleEditProfile(name, email) {
     apiAuth
       .editProfile(name, email)
       .then((res) => {
         setСurrentUser(res);
+        setMessage("Данные успешно отредактированы");
+        setIsPopupOpen(true);
+        setTimeout(closePopup, 2000);
       })
       .catch((err) => {
         console.log(err);
+        setIsPopupOpen(true);
+        setMessage("Что то пошло не так! Попробуйте еще раз.");
+        setErrorImage(true);
+        setTimeout(closePopup, 2000);
       });
   }
 
@@ -182,8 +194,9 @@ const App = () => {
       setMessage(
         "Во время запроса произошла ошибка. Подождите немного и попробуйте ещё раз"
       );
+      setErrorImage(true);
       setIsPopupOpen(true);
-      setTimeout(closePopup, 3000);
+      setTimeout(closePopup, 2000);
       console.log(err);
     } finally {
       setLoading(false);
@@ -270,7 +283,7 @@ const App = () => {
     }
   }, []);
 
-  const handleChangeResize = () => {
+  const handleResize = () => {
     if (window.innerWidth >= 1280) {
       setQuantity(config.desktop);
     } else if (window.innerWidth < 1280 && window.innerWidth >= 768) {
@@ -281,10 +294,10 @@ const App = () => {
   };
 
   React.useEffect(() => {
-    window.addEventListener("resize", handleChangeResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleChangeResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -419,6 +432,7 @@ const App = () => {
           isOpen={isPopupOpen}
           onClose={closePopup}
           loggedIn={loggedIn}
+          errorImage={errorImage}
         />
       </div>
     </CurrentUserContext.Provider>

@@ -25,9 +25,14 @@ const SearchForm = ({
           </button>
         </div>
         {emptyInputMessage && (
-          <span className="search__err-message">Нужно ввести ключевое слово</span>
+          <span className="search__err-message">
+            Нужно ввести ключевое слово
+          </span>
         )}
-        <FilterCheckbox isChecked={isChecked} handleChangleCheckbox={handleChangleCheckbox} />
+        <FilterCheckbox
+          isChecked={isChecked}
+          handleChangleCheckbox={handleChangleCheckbox}
+        />
       </form>
     </section>
   );

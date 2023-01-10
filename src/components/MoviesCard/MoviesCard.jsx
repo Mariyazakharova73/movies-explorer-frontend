@@ -64,10 +64,18 @@ const MoviesCard = ({
 
   return (
     <li className="movies-list__item">
-      <a className="movies-list__link page__link" href={item.trailerLink} target="_black">
+      <a
+        className="movies-list__link page__link"
+        href={item.trailerLink}
+        target="_black"
+      >
         <img
           className="movies-list__image"
-          src={isMoviesPage ? `https://api.nomoreparties.co${item.image.url}` : item.image}
+          src={
+            isMoviesPage
+              ? `https://api.nomoreparties.co${item.image.url}`
+              : item.image
+          }
           alt={`${item.nameRU}.`}
         />
       </a>
@@ -77,9 +85,17 @@ const MoviesCard = ({
       </div>
       {isMoviesPage ? (
         savedMovie ? (
-          <button className="movies-list__button" type="button" onClick={buttonSaveClick} />
+          <button
+            className="movies-list__button"
+            type="button"
+            onClick={buttonSaveClick}
+          />
         ) : (
-          <button className="movies-list__button-save" type="button" onClick={buttonSaveClick}>
+          <button
+            className="movies-list__button-save"
+            type="button"
+            onClick={buttonSaveClick}
+          >
             Сохранить
           </button>
         )

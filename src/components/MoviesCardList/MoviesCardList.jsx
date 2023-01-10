@@ -3,7 +3,12 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import { useLocation } from "react-router-dom";
 import "./MoviesCardList.css";
 
-const MoviesCardList = ({ movies, handleSaveMovie, handleDeleteMovie, savedMovies }) => {
+const MoviesCardList = ({
+  movies,
+  handleSaveMovie,
+  handleDeleteMovie,
+  savedMovies,
+}) => {
   const { pathname } = useLocation();
   const isMoviesPage = pathname === "/movies";
   const moviesList = isMoviesPage ? movies : savedMovies;

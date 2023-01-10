@@ -57,7 +57,11 @@ const Movies = ({
         <p>Ничего не найдено</p>
       ) : null}
       {filteredMovies && filteredMovies.length > movies.length && (
-        <button className="movies__button" type="button" onClick={() => addMoreMovies()}>
+        <button
+          className="movies__button"
+          type="button"
+          onClick={() => addMoreMovies()}
+        >
           Ещё
         </button>
       )}

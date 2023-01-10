@@ -36,6 +36,7 @@ export default class authApi {
   }
 
   editProfile(name, email) {
+    this._token = localStorage.getItem("jwt");
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: {

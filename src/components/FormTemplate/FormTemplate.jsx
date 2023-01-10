@@ -4,10 +4,16 @@ import logo from "../../images/logo.svg";
 import "./FormTemplate.css";
 import { EMAIL } from "../../utils/variables";
 
-const FormTemplate = ({ text, handleSubmit, handleChange, values, errors, isValid }) => {
+const FormTemplate = ({
+  text,
+  handleSubmit,
+  handleChange,
+  values,
+  errors,
+  isValid,
+}) => {
   const { pathname } = useLocation();
   const isLoginPage = pathname === "/signin";
-  console.log(isValid)
 
   return (
     <main className="form-template">
@@ -15,7 +21,11 @@ const FormTemplate = ({ text, handleSubmit, handleChange, values, errors, isVali
         <img className="form-template__logo" src={logo} alt="Логотип." />
       </Link>
       <h1 className="form-template__title">{text.title}</h1>
-      <form className="form form-template__form" onSubmit={handleSubmit} noValidate>
+      <form
+        className="form form-template__form"
+        onSubmit={handleSubmit}
+        noValidate
+      >
         <div className="form-template__container">
           {!isLoginPage ? (
             <div className="form-template__wrapper">
@@ -66,14 +76,21 @@ const FormTemplate = ({ text, handleSubmit, handleChange, values, errors, isVali
           </div>
         </div>
 
-        <button className="form-template__btn-submit" type="submit" disabled={!isValid}>
+        <button
+          className="form-template__btn-submit"
+          type="submit"
+          disabled={!isValid}
+        >
           {text.bthText}
         </button>
       </form>
 
       <p className="form-template__text">
         {text.text}{" "}
-        <Link to={isLoginPage ? "/signup" : "/signin"} className="form-template__link page__link">
+        <Link
+          to={isLoginPage ? "/signup" : "/signin"}
+          className="form-template__link page__link"
+        >
           {text.linkText}
         </Link>
       </p>
