@@ -100,6 +100,7 @@ const App = () => {
         localStorage.setItem("jwt", data.token);
         setLoggedIn(true);
         setChangeToken(true);
+        setErrorImage(false)
         setMessage("Вы успешно авторизировались");
         setIsPopupOpen(true);
         setTimeout(closePopup, 2000);
@@ -118,6 +119,7 @@ const App = () => {
     return apiAuth
       .register(name, email, password)
       .then(() => {
+        setErrorImage(false)
         setMessage("Вы успешно зарегистрировались");
         setLoggedIn(true);
         setIsPopupOpen(true);
@@ -162,6 +164,7 @@ const App = () => {
       .editProfile(name, email)
       .then((res) => {
         setСurrentUser(res);
+        setErrorImage(false)
         setMessage("Данные успешно отредактированы");
         setIsPopupOpen(true);
         setTimeout(closePopup, 2000);
