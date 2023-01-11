@@ -4,7 +4,7 @@ import { useFormAndValidation } from "../../hooks/useFormAndValidation.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { EMAIL } from "../../utils/variables";
 
-const Profile = ({ signOut, handleEditProfile }) => {
+const Profile = ({ signOut, handleEditProfile, buttonRef }) => {
   const { values, handleChange, errors, isValid, setValues } =
     useFormAndValidation({});
   const currentUser = React.useContext(CurrentUserContext);
@@ -17,7 +17,7 @@ const Profile = ({ signOut, handleEditProfile }) => {
 
   React.useEffect(() => {
     setValues(currentUser);
-  }, [currentUser]);
+  }, [currentUser, isValid]);
 
   return (
     <main>
@@ -52,6 +52,7 @@ const Profile = ({ signOut, handleEditProfile }) => {
           </div>
           <span className="profile__error">{errors.email}</span>
           <button
+          ref={buttonRef}
             className="profile__bth-submit"
             type="submit"
             disabled={!isValid}

@@ -18,6 +18,7 @@ import ProtectedRoute from "../ProtectedRoute";
 import { useNavigate } from "react-router-dom";
 import { apiAuth } from "../../utils/Auth";
 import { apiMain } from "../../utils/MainApi";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation.js";
 
 const App = () => {
   const navigate = useNavigate();
@@ -35,6 +36,9 @@ const App = () => {
   const [savedMovies, setSavedMovies] = React.useState([]);
   const [changeToken, setChangeToken] = React.useState(false);
   const [errorImage, setErrorImage] = React.useState(false);
+  const { setIsValid } = useFormAndValidation({});
+
+  const buttonRef = React.useRef(null);
 
   const handleGetSavedMovies = async () => {
     setLoading(true);
@@ -93,18 +97,20 @@ const App = () => {
     navigate("/");
   }
 
-  const handleLogin = async (email, password) => {
+  const handleLogin = (email, password) => {
     return apiAuth
       .authorize(email, password)
       .then((data) => {
-        localStorage.setItem("jwt", data.token);
-        setLoggedIn(true);
-        setChangeToken(true);
-        setErrorImage(false)
-        setMessage("Вы успешно авторизировались");
-        setIsPopupOpen(true);
-        setTimeout(closePopup, 2000);
-        navigate("/movies");
+        if (data.token) {
+          localStorage.setItem("jwt", data.token);
+          setLoggedIn(true);
+          setChangeToken(true);
+          setErrorImage(false);
+          setMessage("Вы успешно авторизировались");
+          setIsPopupOpen(true);
+          setTimeout(closePopup, 2000);
+          navigate("/movies");
+        }
       })
       .catch(() => {
         setLoggedIn(false);
@@ -118,13 +124,13 @@ const App = () => {
   function handleRegister(name, email, password) {
     return apiAuth
       .register(name, email, password)
-      .then(() => {
-        setErrorImage(false)
+      .then((res) => {
+        setErrorImage(false);
         setMessage("Вы успешно зарегистрировались");
         setLoggedIn(true);
         setIsPopupOpen(true);
         setTimeout(closePopup, 2000);
-        navigate("/signin");
+        handleLogin(email, password);
       })
       .catch(() => {
         setLoggedIn(false);
@@ -160,11 +166,17 @@ const App = () => {
   }, [loggedIn, changeToken]);
 
   function handleEditProfile(name, email) {
+    if (name === currentUser.name && email === currentUser.email) {
+      buttonRef.disabled=true;
+      console.log(buttonRef)
+      // setIsValid(false);
+      return;
+    }
     apiAuth
       .editProfile(name, email)
       .then((res) => {
         setСurrentUser(res);
-        setErrorImage(false)
+        setErrorImage(false);
         setMessage("Данные успешно отредактированы");
         setIsPopupOpen(true);
         setTimeout(closePopup, 2000);
@@ -419,6 +431,7 @@ const App = () => {
                 <Profile
                   signOut={signOut}
                   handleEditProfile={handleEditProfile}
+                  buttonRef={buttonRef}
                 />
               </ProtectedRoute>
             }
