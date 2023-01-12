@@ -34,7 +34,6 @@
   flex-direction: column;
   max-width: 410px;
   width: 100%;
-  /* gap: 16px; */
 }
 
 @media screen and (max-width: 1023px) {
@@ -98,7 +97,6 @@
 .profile__bth-submit:disabled {
   opacity: .6;
   cursor: not-allowed;
-  color: red;
 }
 
 
