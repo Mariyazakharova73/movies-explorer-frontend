@@ -13,7 +13,7 @@ function InfoTooltip({ popupText, isOpen, onClose, loggedIn, errorImage }) {
             <img
               className="popup__registration-image"
               src={errorImage ? fail : success}
-              alt="Информационный попап"
+              alt="Информационный попап."
             />
             <h2 className="popup__form-heading">{popupText}</h2>
           </div>

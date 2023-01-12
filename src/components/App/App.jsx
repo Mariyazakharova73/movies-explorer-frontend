@@ -18,7 +18,6 @@ import ProtectedRoute from "../ProtectedRoute";
 import { useNavigate } from "react-router-dom";
 import { apiAuth } from "../../utils/Auth";
 import { apiMain } from "../../utils/MainApi";
-import { useFormAndValidation } from "../../hooks/useFormAndValidation.js";
 
 const App = () => {
   const navigate = useNavigate();
@@ -36,9 +35,6 @@ const App = () => {
   const [savedMovies, setSavedMovies] = React.useState([]);
   const [changeToken, setChangeToken] = React.useState(false);
   const [errorImage, setErrorImage] = React.useState(false);
-  const { setIsValid } = useFormAndValidation({});
-
-  const buttonRef = React.useRef(null);
 
   const handleGetSavedMovies = async () => {
     setLoading(true);
@@ -167,9 +163,6 @@ const App = () => {
 
   function handleEditProfile(name, email) {
     if (name === currentUser.name && email === currentUser.email) {
-      buttonRef.disabled=true;
-      console.log(buttonRef)
-      // setIsValid(false);
       return;
     }
     apiAuth
@@ -431,7 +424,6 @@ const App = () => {
                 <Profile
                   signOut={signOut}
                   handleEditProfile={handleEditProfile}
-                  buttonRef={buttonRef}
                 />
               </ProtectedRoute>
             }

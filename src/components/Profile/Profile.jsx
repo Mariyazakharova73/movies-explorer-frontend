@@ -4,7 +4,7 @@ import { useFormAndValidation } from "../../hooks/useFormAndValidation.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { EMAIL } from "../../utils/variables";
 
-const Profile = ({ signOut, handleEditProfile, buttonRef }) => {
+const Profile = ({ signOut, handleEditProfile }) => {
   const { values, handleChange, errors, isValid, setValues } =
     useFormAndValidation({});
   const currentUser = React.useContext(CurrentUserContext);
@@ -23,7 +23,6 @@ const Profile = ({ signOut, handleEditProfile, buttonRef }) => {
     <main>
       <section className="profile page__content">
         <h1 className="profile__title">Привет, {currentUser.name}!</h1>
-
         <form className="form profile__form" onSubmit={handleSubmit} noValidate>
           <div className="profile__text-wrapper">
             <label className="profile__text">Имя</label>
@@ -52,10 +51,11 @@ const Profile = ({ signOut, handleEditProfile, buttonRef }) => {
           </div>
           <span className="profile__error">{errors.email}</span>
           <button
-          ref={buttonRef}
             className="profile__bth-submit"
             type="submit"
-            disabled={!isValid}
+            disabled={
+              !isValid || JSON.stringify(values) === JSON.stringify(currentUser)
+            }
           >
             Редактировать
           </button>
