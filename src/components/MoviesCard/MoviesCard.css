@@ -18,6 +18,21 @@
   box-sizing: border-box;
   border-radius: 6px;
   cursor: pointer;
+  object-fit: cover;
+  object-position: center;
+  height: 201px;
+}
+
+@media screen and (max-width: 1023px) {
+  .movies-list__image {
+    height: 190px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .movies-list__image {
+    height: 168px;
+  }
 }
 
 .movies-list__text-wpapper {

@@ -9,6 +9,7 @@
   align-items: center;
   padding-bottom: 40px;
   border-bottom: 1px solid var(--border-link);
+  position: relative;
 }
 
 @media screen and (max-width: 767px) {
@@ -73,4 +74,20 @@
 
 .search__btn:hover {
   opacity: 0.6;
+}
+
+.search__err-message {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--bg-btn-saved);
+}
+
+@media screen and (max-width: 450px) {
+  .search__err-message {
+    top: 44px;
+  }
 }

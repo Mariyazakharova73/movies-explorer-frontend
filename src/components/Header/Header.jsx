@@ -8,7 +8,9 @@ const Header = () => {
   const { pathname } = useLocation();
   const isMainPage = pathname === "/";
   const isOtherPage =
-    pathname === "/movies" || pathname === "/saved-movies" || pathname === "/profile";
+    pathname === "/movies" ||
+    pathname === "/saved-movies" ||
+    pathname === "/profile";
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -21,16 +23,20 @@ const Header = () => {
   };
 
   return (
-    <header className={`header page__content ${isMainPage ? " header_type_light" : ""}`}>
-      <Link to="/">
+    <header
+      className={`header page__content ${
+        isMainPage ? " header_type_light" : ""
+      }`}
+    >
+      <Link to="/movies">
         <img className="header__logo" src={logo} alt="Логотип." />
       </Link>
       {isMainPage && (
         <div className="header__link-container">
-          <Link className="page__link" to="/sign-up">
+          <Link className="page__link" to="/signup">
             Регистрация
           </Link>
-          <Link className="header__button page__link" to="/sign-in">
+          <Link className="header__button page__link" to="/signin">
             Войти
           </Link>
         </div>
@@ -39,7 +45,9 @@ const Header = () => {
         <>
           <Navigation isMenuOpen={isMenuOpen} closeMenu={closeMenu} />
           <button
-            className={`header__button-menu ${isMenuOpen && "header__button-menu_opened"}`}
+            className={`header__button-menu ${
+              isMenuOpen && "header__button-menu_opened"
+            }`}
             type="button"
             onClick={toggleMenu}
           />
