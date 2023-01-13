@@ -19,7 +19,11 @@ const Navigation = ({ isMenuOpen, closeMenu }) => {
               </Link>
             </li>
           )}
-          <li className={`navigation__list-item ${isMoviesPage && "navigation__list-item_active"}`}>
+          <li
+            className={`navigation__list-item ${
+              isMoviesPage && "navigation__list-item_active"
+            }`}
+          >
             <Link className="page__link" to="/movies" onClick={closeMenu}>
               Фильмы
             </Link>
@@ -35,7 +39,11 @@ const Navigation = ({ isMenuOpen, closeMenu }) => {
           </li>
         </ul>
         <div className="navigation__account-container">
-          <Link className="navigation__link page__link" to="/profile" onClick={closeMenu}>
+          <Link
+            className="navigation__link page__link"
+            to="/profile"
+            onClick={closeMenu}
+          >
             Аккаунт
           </Link>
           <div className="navigation__account-image" />
